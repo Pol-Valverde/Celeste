@@ -14,7 +14,8 @@ class level1 extends Phaser.Scene{
         this.load.setPath('assets/sprites/');
         this.load.image('bg_green','bg_green_tile.png');
         this.load.image('puerta','spr_door_open_0.png');
-        this.load.image('hero','spr_yellow_idle_0.png');
+        this.load.spritesheet('hero','hero.png',
+        {frameWidth:32,frameHeight:32});
 
         this.load.setPath('assets/maps/');
         this.load.tilemapTiledJSON('level1','level1.json');
@@ -49,7 +50,9 @@ class level1 extends Phaser.Scene{
     this.puerta.body.setImmovable(true);
 
     //Pintamos al heroe
-    this.hero = this.physics.add.sprite(65,100,'hero');
+    //this.hero = this.physics.add.sprite(65,100,'hero');
+    this.hero = new heroPrefab(this,65,100);
+
         /*
     this.physics.add.collider
         (
@@ -66,7 +69,7 @@ class level1 extends Phaser.Scene{
 
        this.loadAnimations();
        
-       this.cursores = this.input.keyboard.createCursorKeys();
+       //this.cursores = this.input.keyboard.createCursorKeys();
        /* 
        this.cursores.space.on
        (
@@ -90,27 +93,35 @@ class level1 extends Phaser.Scene{
         );
             */
         
-        
+        this.cameras.main.startFollow(this.hero);
+        this.cameras.main.setBounds(0,0,gamePrefs.LEVEL1_WIDTH,gamePrefs.LEVEL1_HEIGHT);
     }
 
 
     loadAnimations()
     {
         
-        /*
         this.anims.create
         ({
-            key:'idle',
-            frames:this.anims.generateFrameNumbers('nave',{start:0,end:1}),
+            key:'run',
+            frames:this.anims.generateFrameNumbers('hero',{start:2,end:5}),
             frameRate:10,
             repeat:-1
         });
-        */
+        this.anims.create
+        ({
+            key:'jump',
+            frames:this.anims.generateFrameNumbers('hero',{start:2,end:5}),
+            frameRate:10,
+            repeat:-1
+        });
         
     }
 
 	update()
     {
+        
+        
         /*
         this.bg1.tilePositionY -=.25;
         this.bg2.tilePositionY -=1;
