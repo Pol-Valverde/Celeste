@@ -4,7 +4,7 @@ var gamePrefs=
     HERO_SPEED: 200,
     ENEMY_SPEED: 100,
     GRAVITY: 1000,
-    GAME_WIDTH:960,
+    GAME_WIDTH:540,
     GAME_HEIGHT:540,
     LEVEL1_WIDTH:1280,
     LEVEL1_HEIGHT:800
@@ -15,7 +15,7 @@ var config =
     type: Phaser.AUTO,
     width: gamePrefs.GAME_WIDTH,
     height: gamePrefs.GAME_HEIGHT,
-    scene:[level1], //array con los niveles/pantallas/escenas (unity)
+    scene:[menu,level1], //array con los niveles/pantallas/escenas (unity)
     render:
     {
         pixelArt:true
@@ -23,8 +23,8 @@ var config =
     scale:
     {
         mode:Phaser.Scale.FIT,
-        width:gamePrefs.GAME_WIDTH/2,
-        height:gamePrefs.GAME_HEIGHT/2,
+        width:gamePrefs.GAME_WIDTH,
+        height:gamePrefs.GAME_HEIGHT,
         autoCenter:Phaser.Scale.CENTER_BOTH
     },
     physics:

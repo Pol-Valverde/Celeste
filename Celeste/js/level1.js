@@ -93,8 +93,8 @@ class level1 extends Phaser.Scene{
         );
             */
         
-        this.cameras.main.startFollow(this.hero);
-        this.cameras.main.setBounds(0,0,gamePrefs.LEVEL1_WIDTH,gamePrefs.LEVEL1_HEIGHT);
+        //this.cameras.main.startFollow(this.hero);
+        this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
     }
 
 
