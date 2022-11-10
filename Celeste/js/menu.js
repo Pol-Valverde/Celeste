@@ -3,14 +3,15 @@ class menu extends Phaser.Scene{
 	constructor()
 	{
 		super({key: "menu"});
-		
+		this.font;
 
 	}
 	preload()
 	{
+		this.loadFont('Symtext', 'assets/fonts/Symtext.ttf');
 		this.load.setPath('assets/sprites/');
 		this.load.image('celeste','Celeste_MainMenu_Image.png');
-		this.load.atlas('flares', 's_smoke1_0.png', 'flares.json');
+		this.load.atlas('flares', 'Snow.png', 'flares.json');
 		
         //this.load.image('bg1','background_back.png');
         //this.load.image('bg2','background_frontal.png');
@@ -21,19 +22,32 @@ class menu extends Phaser.Scene{
 	
 	create()
 	{
+		
 		this.particles = this.add.particles('flares').setScale(1);
 
 		this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
-			y: { min: 0, max: 540 },
-			lifespan: 2000,
-			speedX: { min: 200, max: 400 },
-			scale: { start: 0.4, end: 0 },
-			quantity: 4,
+			y: { min: -1080, max: 1080 },
+			lifespan: 20000,
+			speedX: { min: 50, max: 500 },
+			speedY: {min:-50, max:50},
+			scale: { start: 0.025, end: 0.025 },
+			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
-		this.celesteImage = this.add.sprite(config.width/2,config.height/2,'celeste').setOrigin(0.5).setScale(5);
+		this.particles.createEmitter({
+			frame: 'blue',
+			x: -10,
+			y: { min: -2400, max: 2400 },
+			lifespan: 20000,
+			speedX: { min: 200, max: 500 },
+			speedY: {min:-50, max:50},
+			scale: { start: 0.05, end: 0.05 },
+			quantity: 0.00001,
+			blendMode: 'ADD'
+		});
+		this.celesteImage = this.add.sprite(config.width/2,200,'celeste').setOrigin(0.5).setScale(4);
 		//this.cursores = this.input.keyboard.createCursorKeys();
 		this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
 		this._z = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
@@ -51,18 +65,44 @@ class menu extends Phaser.Scene{
 		
         //this.nave.anims.play('idle');
 
-		/*this.titulo = this.add.text
+		this.titulo = this.add.text
 		(
 			config.width/2, 
-			config.height/2 -75,
-			'Shooter 2D',
+			config.height/2 +50,
+			'X+C',
 			{
-				fontFamily: 'Arial Black',
-				fill: '#43d637',
-				stroke:'#FFFFFF',
-				strokeThickness:4
+				fontFamily: 'Symtext',
+				fill: '#5f574f',
+				fontSize: 24
+				
 			}
-		).setOrigin(.5);*/
+		).setOrigin(.5);
+
+		this.mattThorson = this.add.text
+		(
+			config.width/2,
+			config.height/2 +95,
+			'Math Thorson',
+			{
+				fontFamily: 'Symtext',
+				fill: '#5f574f',
+				fontSize: 24
+				
+			}
+		).setOrigin(.5);
+		this.noelBerry = this.add.text
+		(
+			config.width/2,
+			config.height/2 +125,
+			'Noel Berry',
+			{
+				fontFamily: 'Symtext',
+				fill: '#5f574f',
+				fontSize: 24
+				
+			}
+		).setOrigin(.5);
+		
 
 
 		/*this.boton = this.add.image
@@ -115,4 +155,17 @@ class menu extends Phaser.Scene{
 		//this.bg1.tilePositionY -=.25;
         //this.bg2.tilePositionY -=1;
 	}
+
+	loadFont(name, url) {
+		var newFont = new FontFace(name, `url(${url})`);
+		this.font = name;
+		newFont.load().then(function (loaded) {
+			document.fonts.add(loaded);
+		}).catch(function (error) {
+			return error;
+		});
+	}
+
+
+
 }
