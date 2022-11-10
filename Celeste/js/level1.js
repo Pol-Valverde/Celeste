@@ -24,6 +24,7 @@ class level1 extends Phaser.Scene{
 	create()
     {
     //Pintamos el fondo
+    
     this.bg = this.add.tileSprite(0,0,gamePrefs.LEVEL1_WIDTH,
         gamePrefs.LEVEL1_HEIGHT,'bg_green').setOrigin(0);
 
