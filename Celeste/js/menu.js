@@ -1,14 +1,16 @@
 class menu extends Phaser.Scene{
+	
 	constructor()
 	{
 		super({key: "menu"});
 		
+
 	}
 	preload()
 	{
 		this.load.setPath('assets/sprites/');
 		this.load.image('celeste','Celeste_MainMenu_Image.png');
-		this.load.image('particleSnow','spr_jumper_3.png' );
+		this.load.atlas('flares', 's_smoke1_0.png', 'flares.json');
 		
         //this.load.image('bg1','background_back.png');
         //this.load.image('bg2','background_frontal.png');
@@ -19,17 +21,22 @@ class menu extends Phaser.Scene{
 	
 	create()
 	{
-			
+		this.particles = this.add.particles('flares').setScale(1);
 
-
-
-			this.celesteImage = this.add.sprite(config.width/2,config.height/2,'celeste').setOrigin(0.5).setScale(5);
-			//this.cursores = this.input.keyboard.createCursorKeys();
-			this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
-			this._z = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
-			
-		
-		
+		this.particles.createEmitter({
+			frame: 'blue',
+			x: -10,
+			y: { min: 0, max: 540 },
+			lifespan: 2000,
+			speedX: { min: 200, max: 400 },
+			scale: { start: 0.4, end: 0 },
+			quantity: 4,
+			blendMode: 'ADD'
+		});
+		this.celesteImage = this.add.sprite(config.width/2,config.height/2,'celeste').setOrigin(0.5).setScale(5);
+		//this.cursores = this.input.keyboard.createCursorKeys();
+		this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
+		this._z = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
 		//this.bg1 = this.add.tileSprite(0,0,config.width,config.height,'bg1').setOrigin(0);
 		//this.bg2 = this.add.tileSprite(0,0,config.width,config.height,'bg2').setOrigin(0);
 		//this.nave = this.physics.add.sprite(config.width/2,config.height/2,'nave').setOrigin(.5).setScale(1);
