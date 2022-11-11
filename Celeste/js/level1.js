@@ -96,6 +96,30 @@ class level1 extends Phaser.Scene{
         
         //this.cameras.main.startFollow(this.hero);
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
+        this.particles = this.add.particles('flares').setScale(1);
+
+		this.particles.createEmitter({
+			frame: 'blue',
+			x: -10,
+			y: { min: -1080, max: 1080 },
+			lifespan: 20000,
+			speedX: { min: 50, max: 500 },
+			speedY: {min:-50, max:50},
+			scale: { start: 0.025, end: 0.025 },
+			quantity: 0.00001,
+			blendMode: 'ADD'
+		});
+		this.particles.createEmitter({
+			frame: 'blue',
+			x: -10,
+			y: { min: -2400, max: 2400 },
+			lifespan: 20000,
+			speedX: { min: 200, max: 500 },
+			speedY: {min:-50, max:50},
+			scale: { start: 0.05, end: 0.05 },
+			quantity: 0.00001,
+			blendMode: 'ADD'
+		});
     }
 
 
