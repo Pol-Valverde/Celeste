@@ -14,8 +14,8 @@ class level1 extends Phaser.Scene{
         this.load.setPath('assets/sprites/');
         this.load.image('bg_green','bg_green_tile.png');
         this.load.image('puerta','spr_door_open_0.png');
-        this.load.spritesheet('hero','hero.png',
-        {frameWidth:32,frameHeight:32});
+        //this.load.spritesheet('hero','hero.png', {frameWidth:32,frameHeight:32});
+        this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth:10,frameHeight:10});
 
         this.load.setPath('assets/maps/');
         this.load.tilemapTiledJSON('level1','level1.json');
@@ -100,6 +100,7 @@ class level1 extends Phaser.Scene{
         
         //this.cameras.main.startFollow(this.hero);
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
+        this.dashParticles = this.add.particles('flares').setScale(1);
         this.particles = this.add.particles('flares').setScale(1);
 
 		this.particles.createEmitter({
@@ -130,17 +131,32 @@ class level1 extends Phaser.Scene{
     loadAnimations()
     {
         
+        //this.anims.create
+        //({
+        //    key:'run',
+        //    frames:this.anims.generateFrameNumbers('hero',{start:2,end:5}),
+        //    frameRate:10,
+        //    repeat:-1
+        //});
+        //this.anims.create
+        //({
+        //    key:'jump',
+        //    frames:this.anims.generateFrameNumbers('hero',{start:2,end:5}),
+        //    frameRate:10,
+        //    repeat:-1
+        //});
+        
         this.anims.create
         ({
             key:'run',
-            frames:this.anims.generateFrameNumbers('hero',{start:2,end:5}),
+            frames:this.anims.generateFrameNumbers('madeline',{start:0,end:3}),
             frameRate:10,
             repeat:-1
         });
         this.anims.create
         ({
             key:'jump',
-            frames:this.anims.generateFrameNumbers('hero',{start:2,end:5}),
+            frames:this.anims.generateFrameNumbers('madeline',{start:5,end:8}),
             frameRate:10,
             repeat:-1
         });
@@ -156,10 +172,12 @@ class level1 extends Phaser.Scene{
         }
 
         //DASH
-        if(this._x.isDown && this.hero.canDash)
+        if(this._x.isDown && this.hero.canDash && !this.hero.dashing )
         {
+            this.dashParticles = this.add.particles('flares').setScale(1);
             this.hero.JustDashed(this);
-            this.timedEvent = this.time.delayedCall(120, this.hero.StopDash, [this], this.hero);
+            this.timedEvent = this.time.delayedCall(150, this.hero.StopDash, [this], this.hero);
+            this.timedEvent = this.time.delayedCall(500, this.hero.StopDashParticles, [this], this.hero);
         }
 
         /*
