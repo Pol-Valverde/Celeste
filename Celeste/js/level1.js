@@ -52,6 +52,10 @@ class level1 extends Phaser.Scene{
 
     //Pintamos al heroe
     //this.hero = this.physics.add.sprite(65,100,'hero');
+    
+    this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
+    this._z = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+
     this.hero = new heroPrefab(this,65,100);
 
         /*
@@ -145,8 +149,19 @@ class level1 extends Phaser.Scene{
 
 	update()
     {
-        
-        
+        //SALTO
+        if(this._z.isDown && this.hero.body.blocked.down)
+        {
+            this.hero.body.setVelocityY(-gamePrefs.HERO_JUMP);
+        }
+
+        //DASH
+        if(this._x.isDown && this.hero.canDash)
+        {
+            this.hero.JustDashed(this);
+            this.timedEvent = this.time.delayedCall(120, this.hero.StopDash, [this], this.hero);
+        }
+
         /*
         this.bg1.tilePositionY -=.25;
         this.bg2.tilePositionY -=1;

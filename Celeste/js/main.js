@@ -1,6 +1,7 @@
 var gamePrefs=
 {
     HERO_JUMP: 350,
+    HERO_DASH: 700,
     HERO_SPEED: 150,
     ENEMY_SPEED: 100,
     GRAVITY: 1000,
