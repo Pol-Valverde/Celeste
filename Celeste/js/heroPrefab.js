@@ -1,8 +1,8 @@
 class heroPrefab extends Phaser.GameObjects.Sprite
 {
-    constructor(_scene,_positionX,_positionY,_spriteTag='madeline')
+    constructor(_scene, _positionX, _positionY, _spriteTag='madeline')
     {
-        super(_scene,_positionX,_positionY,_spriteTag).setScale(3);
+        super(_scene, _positionX, _positionY, _spriteTag).setScale(3);
         _scene.add.existing(this);
         _scene.physics.world.enable(this);
         //_scene.physics.add.existing(this); 
@@ -11,28 +11,29 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.canDash = true;
     }
 
-    preUpdate(time,delta)
+    preUpdate(time, delta)
     {
-        if(!this.dashing)
+        if (!this.dashing)
         {
-            if(this.cursores.left.isDown)
+            if (this.cursores.left.isDown)
             {
                 this.body.setVelocityX(-gamePrefs.HERO_SPEED);
                 this.setFlipX(true);
                 this.anims.play('run',true);
-            }else
-            if(this.cursores.right.isDown)
+            }
+            else if (this.cursores.right.isDown)
             {
                 this.body.setVelocityX(gamePrefs.HERO_SPEED);
                 this.setFlipX(false);
                 this.anims.play('run',true);
-            }else
+            }
+            else
             {
                 this.body.setVelocityX(0);
                 this.anims.stop().setFrame(0);
             }
 
-            if(!this.body.onFloor())
+            if (!this.body.onFloor())
             {
                 if(this.body.velocity.y < 0)
                 {
@@ -65,6 +66,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.body.allowGravity = false;
         
         this.velY;
+
         //velocity
         if(this.cursores.up.isDown)
         {

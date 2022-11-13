@@ -4,8 +4,8 @@ class menu extends Phaser.Scene{
 	{
 		super({key: "menu"});
 		this.font;
-
 	}
+
 	preload()
 	{
 		this.loadFont('Symtext', 'assets/fonts/Symtext.ttf');
@@ -17,12 +17,10 @@ class menu extends Phaser.Scene{
         //this.load.image('bg2','background_frontal.png');
         //this.load.spritesheet('nave','naveAnim.png',{frameWidth:16,frameHeight:24});
         //this.load.image('btn_play','btn.png');
-		
     }
 	
 	create()
 	{
-		
 		this.particles = this.add.particles('flares').setScale(1);
 
 		this.particles.createEmitter({
@@ -36,6 +34,7 @@ class menu extends Phaser.Scene{
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
+
 		this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
@@ -47,10 +46,11 @@ class menu extends Phaser.Scene{
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
+
 		this.celesteImage = this.add.sprite(config.width/2,200,'celeste').setOrigin(0.5).setScale(4);
 		//this.cursores = this.input.keyboard.createCursorKeys();
 		this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
-		this._z = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+		this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 		//this.bg1 = this.add.tileSprite(0,0,config.width,config.height,'bg1').setOrigin(0);
 		//this.bg2 = this.add.tileSprite(0,0,config.width,config.height,'bg2').setOrigin(0);
 		//this.nave = this.physics.add.sprite(config.width/2,config.height/2,'nave').setOrigin(.5).setScale(1);
@@ -87,9 +87,9 @@ class menu extends Phaser.Scene{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
 				fontSize: 24
-				
 			}
 		).setOrigin(.5);
+
 		this.noelBerry = this.add.text
 		(
 			config.width/2,
@@ -103,9 +103,8 @@ class menu extends Phaser.Scene{
 			}
 		).setOrigin(.5);
 		
-
-
-		/*this.boton = this.add.image
+		/*
+		this.boton = this.add.image
 		(config.width/2, 
 		config.height/2 +75,
 		'btn_play')
@@ -116,15 +115,19 @@ class menu extends Phaser.Scene{
 			'pointerdown',
 			this.iniciaJuego,
 			this
-		);*/
+		);
+		*/
 	}
+
 	iniciaJuego()
 	{
 		console.log('LA MAMA')
 		this.cambiaEscena();
 		console.log('gogogo');
 		//this.boton.destroy();
-		/*this.add.tween
+
+		/*
+		this.add.tween
 		({
 			targets:this.titulo,
 			duration:2000,
@@ -137,8 +140,8 @@ class menu extends Phaser.Scene{
 			y:config.height-20,
 			onComplete:this.cambiaEscena,
 			onCompleteScope:this
-		});*/
-		
+		});
+		*/
 	}
 
 	cambiaEscena()
@@ -148,15 +151,17 @@ class menu extends Phaser.Scene{
 
 	update()
 	{
-
-		if(this._x.isDown||this._z.isDown){
+		if(this._x.isDown && this._c.isDown) // JAN: Això s'hauria de canviar per aconseguir especificar-li que els dos botons s'han de prémer en el mateix instant.
+		{
 			this.iniciaJuego();
 		}
+
 		//this.bg1.tilePositionY -=.25;
         //this.bg2.tilePositionY -=1;
 	}
 
-	loadFont(name, url) {
+	loadFont(name, url)
+	{
 		var newFont = new FontFace(name, `url(${url})`);
 		this.font = name;
 		newFont.load().then(function (loaded) {

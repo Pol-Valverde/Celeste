@@ -58,7 +58,7 @@ class level1 extends Phaser.Scene
         //this.hero = this.physics.add.sprite(65,100,'hero');
         
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
-        this._z = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+        this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
         this.hero = new heroPrefab(this,65,100);
 
@@ -168,13 +168,13 @@ class level1 extends Phaser.Scene
 	update()
     {
         // --- JUMP: ---
-        if (this._z.isDown && this.hero.body.blocked.down)
+        if (this._x.isDown && this.hero.body.blocked.down)
         {
             this.hero.body.setVelocityY(-gamePrefs.HERO_JUMP);
         }
 
         // --- DASH: ---
-        if (this._x.isDown && this.hero.canDash && !this.hero.dashing )
+        if (this._c.isDown && this.hero.canDash && !this.hero.dashing )
         {
             this.dashParticles = this.add.particles('flares').setScale(1);
             this.hero.JustDashed(this);
