@@ -26,10 +26,10 @@ class menu extends Phaser.Scene{
 		this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
-			y: { min: -1080, max: 1080 },
+			y: { min: -2548, max: 2548 },
 			lifespan: 20000,
 			speedX: { min: 50, max: 500 },
-			speedY: {min:-50, max:50},
+			speedY: { min:-50, max:50 },
 			scale: { start: 0.025, end: 0.025 },
 			quantity: 0.00001,
 			blendMode: 'ADD'
@@ -38,16 +38,17 @@ class menu extends Phaser.Scene{
 		this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
-			y: { min: -2400, max: 2400 },
+			y: { min: -4096, max: 4096 },
 			lifespan: 20000,
 			speedX: { min: 200, max: 500 },
-			speedY: {min:-50, max:50},
+			speedY: { min:-50, max:50 },
 			scale: { start: 0.05, end: 0.05 },
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
 
-		this.celesteImage = this.add.sprite(config.width/2,200,'celeste').setOrigin(0.5).setScale(4);
+		this.celesteImage = this.add.sprite(config.width/2, 165, 'celeste').setOrigin(0.5).setScale(4);
+
 		//this.cursores = this.input.keyboard.createCursorKeys();
 		this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
 		this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
@@ -65,10 +66,10 @@ class menu extends Phaser.Scene{
 		
         //this.nave.anims.play('idle');
 
-		this.titulo = this.add.text
+		this.startKeysText = this.add.text
 		(
 			config.width/2, 
-			config.height/2 +50,
+			config.height/2 + 10,
 			'X+C',
 			{
 				fontFamily: 'Symtext',
@@ -78,11 +79,11 @@ class menu extends Phaser.Scene{
 			}
 		).setOrigin(.5);
 
-		this.mattThorson = this.add.text
+		this.polValverde = this.add.text
 		(
 			config.width/2,
-			config.height/2 +95,
-			'Math Thorson',
+			config.height/2 +85,
+			'Pol Valverde',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
@@ -90,11 +91,24 @@ class menu extends Phaser.Scene{
 			}
 		).setOrigin(.5);
 
-		this.noelBerry = this.add.text
+		this.ericRuiz = this.add.text
 		(
 			config.width/2,
-			config.height/2 +125,
-			'Noel Berry',
+			config.height/2 +120,
+			'Eric Ruiz',
+			{
+				fontFamily: 'Symtext',
+				fill: '#5f574f',
+				fontSize: 24
+				
+			}
+		).setOrigin(.5);
+
+		this.janGonzalez = this.add.text
+		(
+			config.width/2,
+			config.height/2 +155,
+			'Jan Gonzalez',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',

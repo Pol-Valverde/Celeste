@@ -108,28 +108,28 @@ class level1 extends Phaser.Scene
         this.particles = this.add.particles('flares').setScale(1);
 
         this.particles.createEmitter({
-            frame: 'blue',
-            x: -10,
-            y: { min: -1080, max: 1080 },
-            lifespan: 20000,
-            speedX: { min: 50, max: 500 },
-            speedY: {min:-50, max:50},
-            scale: { start: 0.025, end: 0.025 },
-            quantity: 0.00001,
-            blendMode: 'ADD'
-        });
-        
-        this.particles.createEmitter({
-            frame: 'blue',
-            x: -10,
-            y: { min: -2400, max: 2400 },
-            lifespan: 20000,
-            speedX: { min: 200, max: 500 },
-            speedY: {min:-50, max:50},
-            scale: { start: 0.05, end: 0.05 },
-            quantity: 0.00001,
-            blendMode: 'ADD'
-        });
+			frame: 'blue',
+			x: -10,
+			y: { min: -3048, max: 3048 },
+			lifespan: 20000,
+			speedX: { min: 50, max: 500 },
+			speedY: { min:-50, max:50 },
+			scale: { start: 0.025, end: 0.025 },
+			quantity: 0.00001,
+			blendMode: 'ADD'
+		});
+
+		this.particles.createEmitter({
+			frame: 'blue',
+			x: -10,
+			y: { min: -8192, max: 8192 },
+			lifespan: 20000,
+			speedX: { min: 200, max: 500 },
+			speedY: { min:-50, max:50 },
+			scale: { start: 0.05, end: 0.05 },
+			quantity: 0.00001,
+			blendMode: 'ADD'
+		});
     }
 
     loadAnimations()
@@ -168,13 +168,13 @@ class level1 extends Phaser.Scene
 	update()
     {
         // --- JUMP: ---
-        if (this._x.isDown && this.hero.body.blocked.down)
+        if (this._c.isDown && this.hero.body.blocked.down)
         {
             this.hero.body.setVelocityY(-gamePrefs.HERO_JUMP);
         }
 
         // --- DASH: ---
-        if (this._c.isDown && this.hero.canDash && !this.hero.dashing )
+        if (this._x.isDown && this.hero.canDash && !this.hero.dashing )
         {
             this.dashParticles = this.add.particles('flares').setScale(1);
             this.hero.JustDashed(this);
