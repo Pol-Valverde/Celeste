@@ -26,11 +26,11 @@ class menu extends Phaser.Scene{
 		this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
-			y: { min: -2548, max: 2548 },
+			y: { min: -2548 / 4, max: 2548 / 4 },
 			lifespan: 20000,
-			speedX: { min: 50, max: 500 },
-			speedY: { min:-50, max:50 },
-			scale: { start: 0.025, end: 0.025 },
+			speedX: { min: 50 / 4, max: 500 / 4 },
+			speedY: { min:-50 / 4, max:50 / 4 },
+			scale: { start: 0.025 / 4, end: 0.025 / 4 },
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
@@ -38,16 +38,16 @@ class menu extends Phaser.Scene{
 		this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
-			y: { min: -4096, max: 4096 },
+			y: { min: -4096 / 4, max: 4096 / 4 },
 			lifespan: 20000,
-			speedX: { min: 200, max: 500 },
-			speedY: { min:-50, max:50 },
-			scale: { start: 0.05, end: 0.05 },
+			speedX: { min: 200 / 4, max: 500 / 4 },
+			speedY: { min:-50 / 4, max:50 / 4 },
+			scale: { start: 0.05 / 4, end: 0.05 / 4 },
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
 
-		this.celesteImage = this.add.sprite(config.width/2, 165, 'celeste').setOrigin(0.5).setScale(4);
+		this.celesteImage = this.add.sprite(config.width/2, 33, 'celeste').setOrigin(0.5).setScale(1);
 
 		//this.cursores = this.input.keyboard.createCursorKeys();
 		this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
@@ -69,12 +69,12 @@ class menu extends Phaser.Scene{
 		this.startKeysText = this.add.text
 		(
 			config.width/2, 
-			config.height/2 + 10,
+			config.height/2 - 1,
 			'X+C',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 24
+				fontSize: 8
 				
 			}
 		).setOrigin(.5);
@@ -82,24 +82,24 @@ class menu extends Phaser.Scene{
 		this.polValverde = this.add.text
 		(
 			config.width/2,
-			config.height/2 +85,
+			config.height/2 + 21,
 			'Pol Valverde',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 24
+				fontSize: 8
 			}
 		).setOrigin(.5);
 
 		this.ericRuiz = this.add.text
 		(
 			config.width/2,
-			config.height/2 +120,
+			config.height/2 + 31,
 			'Eric Ruiz',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 24
+				fontSize: 8
 				
 			}
 		).setOrigin(.5);
@@ -107,12 +107,12 @@ class menu extends Phaser.Scene{
 		this.janGonzalez = this.add.text
 		(
 			config.width/2,
-			config.height/2 +155,
+			config.height/2 + 41,
 			'Jan Gonzalez',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 24
+				fontSize: 8
 				
 			}
 		).setOrigin(.5);

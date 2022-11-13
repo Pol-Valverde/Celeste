@@ -1,8 +1,8 @@
 class heroPrefab extends Phaser.GameObjects.Sprite
 {
-    constructor(_scene, _positionX, _positionY, _spriteTag='madeline')
+    constructor(_scene, _positionX, _positionY, _spriteTag = 'madeline')
     {
-        super(_scene, _positionX, _positionY, _spriteTag).setScale(3);
+        super(_scene, _positionX, _positionY, _spriteTag).setScale(1);
         _scene.add.existing(this);
         _scene.physics.world.enable(this);
         //_scene.physics.add.existing(this); 
@@ -104,10 +104,10 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 			x: { min: (this.x - this.partOffset), max: (this.x + this.partOffset) },
 			y: { min: (this.y - this.partOffset), max: (this.y + this.partOffset) },
 			lifespan: 10000,
-			speedX: { min: 25, max: 50 },
-			speedY: {min:-10, max:10},
-			scale: { start: 0.025, end: 0 },
-			quantity: 5.10001,
+			speedX: { min: 25 / 4, max: 50 / 4 },
+			speedY: { min:-10 / 4, max: 10 / 4},
+			scale: { start: 0.025 / 4, end: 0 },
+			quantity: 0.0000001,
 			blendMode: 'ADD'
 		});
         
