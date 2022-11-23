@@ -34,6 +34,7 @@ class level1 extends Phaser.Scene
 
         // --- 100M Level: ---
         this.load.tilemapTiledJSON('100M_Level','100M_Level.json'); // HERE!!!!!
+        this.load.json('jsonlvl1','100M_Level.json');
     }
 
 	create()
@@ -75,7 +76,8 @@ class level1 extends Phaser.Scene
 
         // --- 100M Level: ---
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
-
+        this.map.setCollisionByExclusion(-1,true, true, 'Spikes')
+        this.data = this.cache.json.get('jsonlvl1');
         //Pintamos la puerta
         //this.puerta = this.physics.add.sprite(65,268,'puerta');
         //this.puerta.body.allowGravity = false;
@@ -96,6 +98,15 @@ class level1 extends Phaser.Scene
             this.hero
         );
         */
+        
+        this.physics.add.collider
+        (
+            this.hero,
+            this.spikes,
+            this.hit,
+            null,
+            this
+        );
 
         this.physics.add.collider
         (
@@ -104,6 +115,8 @@ class level1 extends Phaser.Scene
         );
 
         this.loadAnimations();
+        
+        
         
         //this.cursores = this.input.keyboard.createCursorKeys();
         /* 
@@ -158,6 +171,17 @@ class level1 extends Phaser.Scene
 			blendMode: 'ADD'
 		});
     }
+
+    
+    hit()
+    {
+        this.hero.body.reset(16,88);
+        this.cameras.main.shake(100,0.05);
+        this.cameras.main.flash(200,0,0,0);
+    }
+
+
+
 
     loadAnimations()
     {

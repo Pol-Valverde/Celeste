@@ -135,9 +135,8 @@ class menu extends Phaser.Scene{
 
 	iniciaJuego()
 	{
-		console.log('LA MAMA')
+		
 		this.cambiaEscena();
-		console.log('gogogo');
 		//this.boton.destroy();
 
 		/*

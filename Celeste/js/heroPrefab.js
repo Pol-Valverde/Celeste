@@ -11,6 +11,8 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.canDash = true;
     }
 
+    
+
     preUpdate(time, delta)
     {
         if (!this.dashing)
