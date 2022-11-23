@@ -1,8 +1,8 @@
-class level1 extends Phaser.Scene
+class TwoHundredM extends Phaser.Scene
 {
 	constructor()
     {
-        super({key:'level1'});
+        super({key:'200M'});
     }
 
 	preload()
@@ -33,8 +33,8 @@ class level1 extends Phaser.Scene
         //this.load.tilemapTiledJSON('level1','level1.json');
 
         // --- 100M Level: ---
-        this.load.tilemapTiledJSON('100M_Level','100M_Level.json'); // HERE!!!!!
-        this.load.json('jsonlvl1','100M_Level.json');
+        this.load.tilemapTiledJSON('200M_Level','200M_Level.json'); // HERE!!!!!
+        this.load.json('jsonlvl1','200M_Level.json');
     }
 
 	create()
@@ -45,7 +45,7 @@ class level1 extends Phaser.Scene
         //Pintamos el nivel
         //Cargo el JSON
         //this.map = this.add.tilemap('level1');
-        this.map = this.add.tilemap('100M_Level'); // HERE!!!!!
+        this.map = this.add.tilemap('200M_Level'); // HERE!!!!!
         //Cargamos los TILESETS
         //this.map.addTilesetImage('walls');
         //this.map.addTilesetImage('moss');
@@ -89,7 +89,7 @@ class level1 extends Phaser.Scene
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        this.hero = new heroPrefab(this, 16, 88);
+        this.hero = new heroPrefab(this, 11, 117);
 
         /*
         this.physics.add.collider
@@ -175,7 +175,7 @@ class level1 extends Phaser.Scene
     
     hit()
     {
-        this.hero.body.reset(16,88);
+        this.hero.body.reset(11, 117);
         this.cameras.main.shake(100,0.05);
         this.cameras.main.flash(200,0,0,0);
     }
@@ -232,6 +232,10 @@ class level1 extends Phaser.Scene
             this.timedEvent = this.time.delayedCall(150, this.hero.StopDash, [this], this.hero);
             this.timedEvent = this.time.delayedCall(500, this.hero.StopDashParticles, [this], this.hero);
         }
+
+        // --- CHANGE LEVEL: ---
+        if (this.hero.y < 0)
+            this.scene.start('100M');
 
         /*
         this.bg1.tilePositionY -=.25;
