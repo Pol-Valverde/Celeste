@@ -1,8 +1,8 @@
-class OneHundredM extends Phaser.Scene
+class FourHundredM extends Phaser.Scene
 {
 	constructor()
     {
-        super({key:'100M'});
+        super({key:'400M'});
     }
 
 	preload()
@@ -17,6 +17,7 @@ class OneHundredM extends Phaser.Scene
         this.load.image('CelesteClassic_Background',            'CelesteClassic_Background.png');
         this.load.image('CelesteClassic_SoftDecorations',       'CelesteClassic_SoftDecorations.png');
         this.load.image('CelesteClassic_Spikes',                'CelesteClassic_Spikes.png');
+        this.load.image('CelesteClassic_Everything',            'CelesteClassic_Everything.png'); // <--- NEW LAYER ADDED (EVERYTHING)
 
         /*
         this.load.spritesheet('enemy','enemy-medium.png',
@@ -33,8 +34,8 @@ class OneHundredM extends Phaser.Scene
         //this.load.tilemapTiledJSON('level1','level1.json');
 
         // --- 100M Level: ---
-        this.load.tilemapTiledJSON('100M_Level','100M_Level.json'); // HERE!!!!!
-        this.load.json('jsonlvl1','100M_Level.json');
+        this.load.tilemapTiledJSON('400M_Level','400M_Level.json'); // HERE!!!!!
+        this.load.json('jsonlvl1','400M_Level.json');
     }
 
 	create()
@@ -45,7 +46,7 @@ class OneHundredM extends Phaser.Scene
         //Pintamos el nivel
         //Cargo el JSON
         //this.map = this.add.tilemap('level1');
-        this.map = this.add.tilemap('100M_Level'); // HERE!!!!!
+        this.map = this.add.tilemap('400M_Level'); // HERE!!!!!
         //Cargamos los TILESETS
         //this.map.addTilesetImage('walls');
         //this.map.addTilesetImage('moss');
@@ -56,6 +57,7 @@ class OneHundredM extends Phaser.Scene
         this.map.addTilesetImage('CelesteClassic_Background');
         this.map.addTilesetImage('CelesteClassic_SoftDecorations');
         this.map.addTilesetImage('CelesteClassic_Spikes');
+        this.map.addTilesetImage('CelesteClassic_Everything'); // <--- NEW LAYER ADDED (EVERYTHING)
 
         //Pintamos las CAPAS/LAYERS
         //this.walls = this.map.createLayer('layer_walls','walls');
@@ -70,13 +72,15 @@ class OneHundredM extends Phaser.Scene
         this.walls =            this.map.createLayer('Walls_Ground_&_Ceiling',  'CelesteClassic_Walls');
         this.breakable_walls =  this.map.createLayer('Breakable_Walls',         'CelesteClassic_Walls');
         this.spikes =           this.map.createLayer('Spikes',                  'CelesteClassic_Spikes');
+        this.everything =       this.map.createLayer('Everything',              'CelesteClassic_Everything'); // <--- NEW LAYER ADDED (EVERYTHING)
 
         //this.map.setCollisionBetween(1,11,true,true,'layer_walls');
         //this.map.setCollisionByExclusion(-1,true,true,'layer_walls');
 
         // --- 100M Level: ---
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
-        this.map.setCollisionByExclusion(-1,true, true, 'Spikes')
+        this.map.setCollisionByExclusion(-1, true, true, 'Spikes');
+        this.map.setCollisionByExclusion(-1, true, true, 'Everything');
         this.data = this.cache.json.get('jsonlvl1');
         //Pintamos la puerta
         //this.puerta = this.physics.add.sprite(65,268,'puerta');
@@ -84,12 +88,12 @@ class OneHundredM extends Phaser.Scene
         //this.puerta.body.setImmovable(true);
 
         //Pintamos al heroe
-        //this.hero = this.physics.add.sprite(65, 100,'hero');
+        //this.hero = this.physics.add.sprite(65,100,'hero');
         
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        this.hero = new heroPrefab(this, 12, 92);
+        this.hero = new heroPrefab(this, 11, 92);
 
         /*
         this.physics.add.collider
@@ -101,6 +105,12 @@ class OneHundredM extends Phaser.Scene
         
         this.physics.add.collider
         (
+            this.walls,
+            this.hero
+        );
+
+        this.physics.add.collider
+        (
             this.hero,
             this.spikes,
             this.hit,
@@ -110,7 +120,7 @@ class OneHundredM extends Phaser.Scene
 
         this.physics.add.collider
         (
-            this.walls,
+            this.everything,
             this.hero
         );
 
@@ -175,7 +185,7 @@ class OneHundredM extends Phaser.Scene
     
     hit()
     {
-        this.hero.body.reset(12, 92);
+        this.hero.body.reset(11, 92);
         this.cameras.main.shake(100,0.05);
         this.cameras.main.flash(200,0,0,0);
     }
@@ -235,7 +245,7 @@ class OneHundredM extends Phaser.Scene
 
         // --- CHANGE LEVEL: ---
         if (this.hero.y < 0)
-            this.scene.start('200M');
+            this.scene.start('500M');
 
         /*
         this.bg1.tilePositionY -=.25;

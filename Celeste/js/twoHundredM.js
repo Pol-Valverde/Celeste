@@ -89,7 +89,7 @@ class TwoHundredM extends Phaser.Scene
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        this.hero = new heroPrefab(this, 11, 117);
+        this.hero = new heroPrefab(this, 11, 108);
 
         /*
         this.physics.add.collider
@@ -175,7 +175,7 @@ class TwoHundredM extends Phaser.Scene
     
     hit()
     {
-        this.hero.body.reset(11, 117);
+        this.hero.body.reset(11, 108);
         this.cameras.main.shake(100,0.05);
         this.cameras.main.flash(200,0,0,0);
     }
@@ -235,7 +235,7 @@ class TwoHundredM extends Phaser.Scene
 
         // --- CHANGE LEVEL: ---
         if (this.hero.y < 0)
-            this.scene.start('100M');
+            this.scene.start('300M');
 
         /*
         this.bg1.tilePositionY -=.25;
