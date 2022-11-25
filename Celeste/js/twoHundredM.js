@@ -237,6 +237,11 @@ class TwoHundredM extends Phaser.Scene
         if (this.hero.y < 0)
             this.scene.start('300M');
 
+
+        if(this.hero.y > gamePrefs.GAME_HEIGHT)
+        {
+            this.hit();
+        }
         /*
         this.bg1.tilePositionY -=.25;
         this.bg2.tilePositionY -=1;

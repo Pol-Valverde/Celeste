@@ -236,7 +236,9 @@ class OneHundredM extends Phaser.Scene
         // --- CHANGE LEVEL: ---
         if (this.hero.y < 0)
             this.scene.start('200M');
+        
 
+        
         /*
         this.bg1.tilePositionY -=.25;
         this.bg2.tilePositionY -=1;

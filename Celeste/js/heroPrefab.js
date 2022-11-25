@@ -15,6 +15,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 
     preUpdate(time, delta)
     {
+
         if (!this.dashing)
         {
             if (this.cursores.left.isDown)
