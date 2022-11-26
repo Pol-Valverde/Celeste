@@ -52,14 +52,14 @@ class heroPrefab extends Phaser.GameObjects.Sprite
                 this.canDash = true;
             }
         }
-        else
+
+        if(this.body.velocity.y > 0 && this.body.onWall())
         {
-            //dashAnim???
+            this.body.velocity.y = 20;
+            console.log(this.body.velocity.y);
         }
 
         super.preUpdate(time, delta);
-
-        console.log(this.canDash);
     }
 
     JustDashed(_scene)
