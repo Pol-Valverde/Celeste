@@ -1,6 +1,9 @@
 var gamePrefs=
 {
     HERO_JUMP: 125,
+    HERO_WALLJUMP_X: 80, //hauria de ser 3,75 tiles
+    HERO_WALLJUMP_Y: 80,
+    HERO_WALLJUMP_TIME: 255,
     HERO_DASH: 250,
     HERO_SPEED: 64,
     ENEMY_SPEED: 100,

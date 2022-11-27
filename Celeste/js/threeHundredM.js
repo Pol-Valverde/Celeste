@@ -229,9 +229,22 @@ class ThreeHundredM extends Phaser.Scene
 	update()
     {
         // --- JUMP: ---
-        if (this._c.isDown && this.hero.body.blocked.down)
+        if (this._c.isDown && this.hero.isCUp)
         {
-            this.hero.body.setVelocityY(-gamePrefs.HERO_JUMP);
+            this.hero.isCUp = false;
+            if(this.hero.body.blocked.down)
+            {
+                this.hero.body.setVelocityY(-gamePrefs.HERO_JUMP);
+            }
+            else if((this.hero.wallSliding || this.hero.canWallJump) && !this.hero.wallJumping)
+            {
+                this.hero.WallJump()
+                this.timedEvent = this.time.delayedCall(gamePrefs.HERO_WALLJUMP_TIME, this.hero.StopWallJump, [this], this.hero);
+            }
+        }
+        else if(this._c.isUp)
+        {
+            this.hero.isCUp = true;
         }
 
         // --- DASH: ---

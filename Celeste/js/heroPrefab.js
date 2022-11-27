@@ -9,14 +9,28 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.cursores = _scene.input.keyboard.createCursorKeys();
 
         this.canDash = true;
+
+        this.wallSliding = false;
+        this.wallJumping = false;
+        this.lastXDir = 0;
+        this.canWallJump = false;
+
+        this.isCUp = true;
     }
 
     
 
     preUpdate(time, delta)
     {
+        if(this.wallJumping && this.body.velocity.x == 0)
+        {
+            this.wallJumping = false;
+            this.body.allowGravity = true;
 
-        if (!this.dashing)
+            this.body.setVelocityY(-20);
+        }
+
+        if (!this.dashing && !this.wallJumping)
         {
             if (this.cursores.left.isDown)
             {
@@ -53,13 +67,59 @@ class heroPrefab extends Phaser.GameObjects.Sprite
             }
         }
 
-        if(this.body.velocity.y > 0 && this.body.onWall())
+        if(this.body.velocity.y > 0 && this.body.onWall() && !this.wallJumping)
         {
             this.body.velocity.y = 20;
-            console.log(this.body.velocity.y);
+
+            this.wallSliding = true;
+        }
+        else{
+            this.wallSliding = false;
+        }
+
+        if(this.body.onWall())
+        {
+            this.canWallJump = true;
         }
 
         super.preUpdate(time, delta);
+    }
+
+    postUpdate()
+    {
+        if(this.body.velocity.x > 10 || this.body.velocity.x < -10)
+        {
+            this.lastXDir = this.body.velocity.x;
+            console.log(this.lastXDir);
+
+            if(!this.body.onWall())
+            {
+                this.canWallJump = false;
+            }
+        }
+    }
+
+    WallJump(_scene)
+    {
+        this.wallJumping = true;
+        this.body.allowGravity = false;
+        this.body.setVelocityY(-gamePrefs.HERO_WALLJUMP_Y);
+        if(this.lastXDir > 0)
+        {
+            this.body.setVelocityX(-gamePrefs.HERO_WALLJUMP_X);
+        }
+        else{
+            this.body.setVelocityX(gamePrefs.HERO_WALLJUMP_X);
+        }
+    }
+
+    StopWallJump(_scene)
+    {
+        if(this.wallJumping)
+        {
+            this.wallJumping = false;
+            this.body.allowGravity = true;
+        }
     }
 
     JustDashed(_scene)
