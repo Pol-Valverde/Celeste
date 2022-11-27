@@ -251,15 +251,20 @@ class ThreeHundredM extends Phaser.Scene
         if (this._x.isDown && this.hero.canDash && !this.hero.dashing )
         {
             this.dashParticles = this.add.particles('flares').setScale(1);
+            this.timedEvent = this.time.delayedCall(500, this.hero.StopDashParticles, [this], this.hero);
             this.hero.JustDashed(this);
             this.timedEvent = this.time.delayedCall(150, this.hero.StopDash, [this], this.hero);
-            this.timedEvent = this.time.delayedCall(500, this.hero.StopDashParticles, [this], this.hero);
+            
         }
 
         // --- CHANGE LEVEL: ---
         if (this.hero.y < 0)
             this.scene.start('400M');
-
+        // --- VOID DEATH: ---
+        if((this.hero.y > gamePrefs.GAME_HEIGHT) || (this.hero.x < -3))
+        {
+            this.hit();
+        }
         /*
         this.bg1.tilePositionY -=.25;
         this.bg2.tilePositionY -=1;
