@@ -184,7 +184,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 
         this.body.setVelocityX(0);
         this.body.setVelocityY(0);
-        this.StopDashParticles(_scene);
+        _scene.time.delayedCall(5000, this.StopDashParticles(_scene));
     }
 
     StopDashParticles(_scene)

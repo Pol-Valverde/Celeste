@@ -35,6 +35,7 @@ class OneHundredM extends Phaser.Scene
         // --- 100M Level: ---
         this.load.tilemapTiledJSON('100M_Level','100M_Level.json'); // HERE!!!!!
         this.load.json('jsonlvl1','100M_Level.json');
+        
     }
 
 	create()
@@ -145,7 +146,7 @@ class OneHundredM extends Phaser.Scene
         
         //this.cameras.main.startFollow(this.hero);
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
-        this.dashParticles = this.add.particles('flares').setScale(1);
+        this.dashParticles = this.add.particles('celesteWhite').setScale(1);
         this.particles = this.add.particles('flares').setScale(1);
 
         this.particles.createEmitter({
@@ -161,6 +162,29 @@ class OneHundredM extends Phaser.Scene
 		});
 
 		this.particles.createEmitter({
+			frame: 'blue',
+			x: -10,
+			y: { min: -4096 / 4, max: 4096 / 4 },
+			lifespan: 20000,
+			speedX: { min: 200 / 4, max: 500 / 4 },
+			speedY: { min:-50 / 4, max:50 / 4 },
+			scale: { start: 0.05 / 4, end: 0.05 / 4 },
+			quantity: 0.00001,
+			blendMode: 'ADD'
+		});
+        this.dashParticles.createEmitter({
+			frame: 'blue',
+			x: -10,
+			y: { min: -2548 / 4, max: 2548 / 4 },
+			lifespan: 20000,
+			speedX: { min: 50 / 4, max: 500 / 4 },
+			speedY: { min:-50 / 4, max:50 / 4 },
+			scale: { start: 0.025 / 4, end: 0.025 / 4 },
+			quantity: 0.00001,
+			blendMode: 'ADD'
+		});
+
+		this.dashParticles.createEmitter({
 			frame: 'blue',
 			x: -10,
 			y: { min: -4096 / 4, max: 4096 / 4 },
@@ -245,8 +269,7 @@ class OneHundredM extends Phaser.Scene
             if(this.dashedParticles == false)
             {
                 this.dashParticles = true;
-                this.dashParticles = this.add.particles('flares').setScale(1); 
-        
+                this.dashParticles = this.add.particles('celesteWhite').setScale(1); 
             }
             
             this.hero.JustDashed(this);

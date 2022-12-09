@@ -12,7 +12,7 @@ class menu extends Phaser.Scene{
 		this.load.setPath('assets/sprites/');
 		this.load.image('celeste','Celeste_MainMenu_Image.png');
 		this.load.atlas('flares', 'Snow.png', 'flares.json');
-		
+		this.load.atlas('celesteWhite', 'CelesteWhite.png', 'flares.json');
         //this.load.image('bg1','background_back.png');
         //this.load.image('bg2','background_frontal.png');
         //this.load.spritesheet('nave','naveAnim.png',{frameWidth:16,frameHeight:24});
