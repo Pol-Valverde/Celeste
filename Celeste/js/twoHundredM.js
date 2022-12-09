@@ -39,6 +39,7 @@ class TwoHundredM extends Phaser.Scene
 
 	create()
     {
+        this.dashedParticles = false;
         //Pintamos el fondo // JAN: ara mateix el deixem negre
         //this.bg = this.add.tileSprite(0, 0, gamePrefs.LEVEL1_WIDTH, gamePrefs.LEVEL1_HEIGHT, 'bg_green').setOrigin(0);
 
@@ -240,8 +241,14 @@ class TwoHundredM extends Phaser.Scene
         // --- DASH: ---
         if (this._x.isDown && this.hero.canDash && !this.hero.dashing )
         {
-            this.dashParticles = this.add.particles('flares').setScale(1);
-            this.timedEvent = this.time.delayedCall(500, this.hero.StopDashParticles, [this], this.hero);
+            this.cameras.main.shake(50,0.05);
+            if(this.dashedParticles == false)
+            {
+                this.dashParticles = true;
+                this.dashParticles = this.add.particles('flares').setScale(1); 
+        
+            }
+            
             this.hero.JustDashed(this);
             this.timedEvent = this.time.delayedCall(150, this.hero.StopDash, [this], this.hero);
         }

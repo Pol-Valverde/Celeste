@@ -129,7 +129,6 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.body.allowGravity = false;
         
         this.velY;
-
         //velocity
         if(this.cursores.up.isDown)
         {
@@ -158,7 +157,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         {
             this.body.setVelocityX(0);
         }
-
+        
         this.partOffset = 10;
         
         //_scene.dashParticles.destroy()
@@ -185,10 +184,12 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 
         this.body.setVelocityX(0);
         this.body.setVelocityY(0);
+        this.StopDashParticles(_scene);
     }
 
     StopDashParticles(_scene)
     {
         _scene.dashParticles.destroy()
+        _scene.dashParticles = false;
     }
 }
