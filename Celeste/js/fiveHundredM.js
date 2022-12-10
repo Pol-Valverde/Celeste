@@ -254,9 +254,8 @@ class FiveHundredM extends Phaser.Scene
             this.cameras.main.shake(50,0.05);
             if(this.dashedParticles == false)
             {
-                this.dashParticles = true;
-                this.dashParticles = this.add.particles('flares').setScale(1); 
-        
+                this.dashedParticles = true;
+                this.dashParticles = this.add.particles('celesteWhite').setScale(1); 
             }
             
             this.hero.JustDashed(this);

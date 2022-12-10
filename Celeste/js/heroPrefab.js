@@ -14,7 +14,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.wallJumping = false;
         this.lastXDir = 0;
         this.canWallJump = false;
-
+        this.dashedAnim = false;
         this.isCUp = true;
     }
 
@@ -52,18 +52,34 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 
             if (!this.body.onFloor())
             {
-                if(this.body.velocity.y < 0)
+                if(this.dashedAnim)
                 {
-                    this.anims.stop().setFrame(7);
+                    if(this.body.velocity.y < 0)
+                    {
+                        this.anims.stop().setFrame(10);
+                    }
+                    else
+                    {
+                        this.anims.stop().setFrame(8);
+                    }
                 }
                 else
                 {
-                    this.anims.stop().setFrame(6);
+                    if(this.body.velocity.y < 0)
+                    {
+                        this.anims.stop().setFrame(7);
+                    }
+                    else
+                    {
+                        this.anims.stop().setFrame(6);
+                    }
                 }
+                
             }
             else
             {
                 this.canDash = true;
+                this.dashedAnim = false;
             }
         }
 
@@ -127,7 +143,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.canDash = false;
         this.dashing = true;
         this.body.allowGravity = false;
-        
+        this.dashedAnim = true;
         this.velY;
         //velocity
         if(this.cursores.up.isDown)
@@ -173,7 +189,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 			blendMode: 'ADD'
 		});
         
-        this.anims.stop().setFrame(9);
+        this.anims.stop().setFrame(11);
     }
 
     StopDash(_scene)
@@ -184,12 +200,12 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 
         this.body.setVelocityX(0);
         this.body.setVelocityY(0);
-        _scene.time.delayedCall(5000, this.StopDashParticles(_scene));
+        
     }
 
     StopDashParticles(_scene)
     {
         _scene.dashParticles.destroy()
-        _scene.dashParticles = false;
+        _scene.dashedParticles = false
     }
 }
