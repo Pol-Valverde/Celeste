@@ -29,7 +29,7 @@ class FourHundredM extends Phaser.Scene
         //this.load.image('puerta','spr_door_open_0.png');
         //this.load.spritesheet('hero','hero.png', {frameWidth:32,frameHeight:32});
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
-
+        this.load.spritesheet('box','Box.png',{frameWidth: 8, frameHeight: 8});
         this.load.setPath('assets/maps/');
         //this.load.tilemapTiledJSON('level1','level1.json');
 
@@ -225,6 +225,16 @@ class FourHundredM extends Phaser.Scene
             frameRate:10,
             repeat:-1
         });
+
+        this.anims.create
+        ({
+            key:'boxDestroy',
+            frames:this.anims.generateFrameNumbers('box',{start:0,end:2}),
+            frameRate:10,
+            repeat:0
+        })
+
+
     }
 
 	update()
