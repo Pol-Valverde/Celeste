@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="16" height="16" tilewidth="8" tileheight="8" infinite="0" nextlayerid="14" nextobjectid="13">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="13">
  <editorsettings>
-  <export format="json"/>
+  <export target="500M_Level.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="../tilesets/CelesteClassic_SoftDecorations.tsx"/>
  <tileset firstgid="10" source="../tilesets/CelesteClassic_Spikes.tsx"/>
