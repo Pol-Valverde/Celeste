@@ -105,7 +105,6 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         if(this.body.velocity.x > 10 || this.body.velocity.x < -10)
         {
             this.lastXDir = this.body.velocity.x;
-            console.log(this.lastXDir);
 
             if(!this.body.onWall())
             {

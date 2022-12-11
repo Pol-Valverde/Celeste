@@ -64,9 +64,9 @@ class ThreeHundredM extends Phaser.Scene
         console.log("Amount of layers: " + this.data.layers.length);
         console.log("Layer 5 ID: " + this.data.layers[5].id);
 
-        var _posX = this.data.layers[5].objects[0].x; // x position of the "1st ELEMENT" from the "1st LAYER" (layer 0 does not exist)
-        var _posY = this.data.layers[5].objects[0].y; // y position of the "1st ELEMENT" from the "1st LAYER" (layer 0 does not exist)
-        this.hero = new heroPrefab(this, _posX, _posY);
+        //var _posX = this.data.layers[5].objects[0].x; // x position of the "1st ELEMENT" from the "1st LAYER" (layer 0 does not exist)
+        //var _posY = this.data.layers[5].objects[0].y; // y position of the "1st ELEMENT" from the "1st LAYER" (layer 0 does not exist)
+        //this.hero = new heroPrefab(this, _posX, _posY);
 
         // this.hero = new heroPrefab(this, 44, 400); // Jan [11/12/2022]: Updated these
         
@@ -193,5 +193,7 @@ class ThreeHundredM extends Phaser.Scene
         {
             this.hit();
         }
+
+        this.hero.postUpdate();
     }
 }

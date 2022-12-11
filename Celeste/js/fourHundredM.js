@@ -82,6 +82,7 @@ class FourHundredM extends Phaser.Scene
             this.hero
         );
 
+        this.loadObjects();
         this.loadAnimations();
 
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
@@ -121,6 +122,26 @@ class FourHundredM extends Phaser.Scene
         this.dashParticles.destroy()
     }
 
+    loadObjects()
+    {
+        var layer = 5;
+
+        for(var i = 0; i < this.data.layers[layer].objects.length; i++)
+        {
+            var _posX = this.data.layers[layer].objects[i].x;
+            var _posY = this.data.layers[layer].objects[i].y;
+
+            switch(this.data.layers[layer].objects[i].class)
+            {
+                case "BreakingBlock":
+                    var _newBreakingGround = new breakingGroundPrefab(this, _posX, _posY, 'box');
+                    break;
+                case "FlyingStrawberry":
+                    break;
+            }
+        }
+    }
+
     loadAnimations()
     {
         this.anims.create
@@ -141,8 +162,8 @@ class FourHundredM extends Phaser.Scene
         this.anims.create
         ({
             key:'boxDestroy',
-            frames:this.anims.generateFrameNumbers('box',{start:0,end:2}),
-            frameRate:10,
+            frames:this.anims.generateFrameNumbers('box',{start:0,end:3}),
+            frameRate:2,
             repeat:0
         })
     }
@@ -192,5 +213,7 @@ class FourHundredM extends Phaser.Scene
         {
             this.hit();
         }
+
+        this.hero.postUpdate();
     }
 }

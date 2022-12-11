@@ -6,6 +6,8 @@ var gamePrefs=
     HERO_WALLJUMP_TIME: 255,
     HERO_DASH: 1000, // Jan [11/12/2022]: Updated these
     HERO_SPEED: 256, // Jan [11/12/2022]: Updated these
+    BREAKINGGROUND_BREAK_TIME: 1500,
+    BREAKINGGROUND_RECOVER_TIME: 1000,
     ENEMY_SPEED: 100,
     GRAVITY: 1400, // Jan [11/12/2022]: Updated these
     GAME_WIDTH: 512, // Jan [11/12/2022]: Updated this

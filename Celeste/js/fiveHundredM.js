@@ -184,5 +184,7 @@ class FiveHundredM extends Phaser.Scene
         {
             this.hit();
         }
+
+        this.hero.postUpdate();
     }
 }
