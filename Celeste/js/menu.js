@@ -12,11 +12,6 @@ class menu extends Phaser.Scene{
 		this.load.setPath('assets/sprites/');
 		this.load.image('celeste','Celeste_MainMenu_Image.png');
 		this.load.atlas('flares', 'Snow.png', 'flares.json');
-		
-        //this.load.image('bg1','background_back.png');
-        //this.load.image('bg2','background_frontal.png');
-        //this.load.spritesheet('nave','naveAnim.png',{frameWidth:16,frameHeight:24});
-        //this.load.image('btn_play','btn.png');
     }
 	
 	create()
@@ -26,11 +21,11 @@ class menu extends Phaser.Scene{
 		this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
-			y: { min: -2548 / 4, max: 2548 / 4 },
+			y: { min: -2548, max: 2548 }, // Jan [11/12/2022]: Updated these
 			lifespan: 20000,
-			speedX: { min: 50 / 4, max: 500 / 4 },
-			speedY: { min:-50 / 4, max:50 / 4 },
-			scale: { start: 0.025 / 4, end: 0.025 / 4 },
+			speedX: { min: 50, max: 500 }, // Jan [11/12/2022]: Updated these
+			speedY: { min:-50, max: 50 }, // Jan [11/12/2022]: Updated these
+			scale: { start: 0.025, end: 0.025 }, // Jan [11/12/2022]: Updated these
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
@@ -38,43 +33,29 @@ class menu extends Phaser.Scene{
 		this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
-			y: { min: -4096 / 4, max: 4096 / 4 },
+			y: { min: -4096, max: 4096 }, // Jan [11/12/2022]: Updated these
 			lifespan: 20000,
-			speedX: { min: 200 / 4, max: 500 / 4 },
-			speedY: { min:-50 / 4, max:50 / 4 },
-			scale: { start: 0.05 / 4, end: 0.05 / 4 },
+			speedX: { min: 200, max: 500 }, // Jan [11/12/2022]: Updated these
+			speedY: { min:-50, max: 50 }, // Jan [11/12/2022]: Updated these
+			scale: { start: 0.05, end: 0.05 }, // Jan [11/12/2022]: Updated these
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
 
-		this.celesteImage = this.add.sprite(config.width/2, 33, 'celeste').setOrigin(0.5).setScale(1);
+		this.celesteImage = this.add.sprite(config.width/2, 132, 'celeste').setOrigin(0.5).setScale(4); // Jan [11/12/2022]: Updated these
 
-		//this.cursores = this.input.keyboard.createCursorKeys();
 		this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
 		this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
-		//this.bg1 = this.add.tileSprite(0,0,config.width,config.height,'bg1').setOrigin(0);
-		//this.bg2 = this.add.tileSprite(0,0,config.width,config.height,'bg2').setOrigin(0);
-		//this.nave = this.physics.add.sprite(config.width/2,config.height/2,'nave').setOrigin(.5).setScale(1);
-
-		/*this.anims.create
-        ({
-            key:'idle',
-            frames:this.anims.generateFrameNumbers('nave',{start:0,end:1}),
-            frameRate:10,
-            repeat:-1
-        });*/
-		
-        //this.nave.anims.play('idle');
 
 		this.startKeysText = this.add.text
 		(
 			config.width/2, 
-			config.height/2 - 1,
+			config.height/2 - 4, // Jan [11/12/2022]: Updated these
 			'X+C',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 8
+				fontSize: 32 // Jan [11/12/2022]: Updated these
 				
 			}
 		).setOrigin(.5);
@@ -82,24 +63,24 @@ class menu extends Phaser.Scene{
 		this.polValverde = this.add.text
 		(
 			config.width/2,
-			config.height/2 + 21,
+			config.height/2 + 84, // Jan [11/12/2022]: Updated these
 			'Pol Valverde',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 8
+				fontSize: 32 // Jan [11/12/2022]: Updated these
 			}
 		).setOrigin(.5);
 
 		this.ericRuiz = this.add.text
 		(
 			config.width/2,
-			config.height/2 + 31,
+			config.height/2 + 124, // Jan [11/12/2022]: Updated these
 			'Eric Ruiz',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 8
+				fontSize: 32 // Jan [11/12/2022]: Updated these
 				
 			}
 		).setOrigin(.5);
@@ -107,59 +88,25 @@ class menu extends Phaser.Scene{
 		this.janGonzalez = this.add.text
 		(
 			config.width/2,
-			config.height/2 + 41,
+			config.height/2 + 164, // Jan [11/12/2022]: Updated these
 			'Jan Gonzalez',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 8
+				fontSize: 32 // Jan [11/12/2022]: Updated these
 				
 			}
 		).setOrigin(.5);
-		
-		/*
-		this.boton = this.add.image
-		(config.width/2, 
-		config.height/2 +75,
-		'btn_play')
-		.setScale(.25)
-		.setInteractive({useHandCursor:true})
-		.on
-		(
-			'pointerdown',
-			this.iniciaJuego,
-			this
-		);
-		*/
 	}
 
 	iniciaJuego()
 	{
-		
 		this.cambiaEscena();
-		//this.boton.destroy();
-
-		/*
-		this.add.tween
-		({
-			targets:this.titulo,
-			duration:2000,
-			alpha:0
-		});
-		this.add.tween
-		({
-			targets:this.nave,
-			duration:3000,
-			y:config.height-20,
-			onComplete:this.cambiaEscena,
-			onCompleteScope:this
-		});
-		*/
 	}
 
 	cambiaEscena()
 	{
-		this.scene.start('100M'); // <--- CHANGE THIS TO '400M' TO SHOW THE FOURTH AND FIFTH LEVELS
+		this.scene.start('100M');
 	}
 
 	update()
@@ -168,9 +115,6 @@ class menu extends Phaser.Scene{
 		{
 			this.iniciaJuego();
 		}
-
-		//this.bg1.tilePositionY -=.25;
-        //this.bg2.tilePositionY -=1;
 	}
 
 	loadFont(name, url)
@@ -183,7 +127,4 @@ class menu extends Phaser.Scene{
 			return error;
 		});
 	}
-
-
-
 }

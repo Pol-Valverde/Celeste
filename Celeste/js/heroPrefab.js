@@ -2,10 +2,9 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 {
     constructor(_scene, _positionX, _positionY, _spriteTag = 'madeline')
     {
-        super(_scene, _positionX, _positionY, _spriteTag).setScale(1);
+        super(_scene, _positionX, _positionY, _spriteTag).setScale(4); // Jan [11/12/2022]: Updated scale value
         _scene.add.existing(this);
         _scene.physics.world.enable(this);
-        //_scene.physics.add.existing(this); 
         this.cursores = _scene.input.keyboard.createCursorKeys();
 
         this.canDash = true;
@@ -17,8 +16,6 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.dashedAnim = false;
         this.isCUp = true;
     }
-
-    
 
     preUpdate(time, delta)
     {
@@ -74,7 +71,6 @@ class heroPrefab extends Phaser.GameObjects.Sprite
                         this.anims.stop().setFrame(6);
                     }
                 }
-                
             }
             else
             {
@@ -145,7 +141,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.body.allowGravity = false;
         this.dashedAnim = true;
         this.velY;
-        //velocity
+
         if(this.cursores.up.isDown)
         {
             this.body.setVelocityY(-gamePrefs.HERO_DASH);
@@ -176,7 +172,6 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         
         this.partOffset = 10;
         
-        //_scene.dashParticles.destroy()
         _scene.dashParticles.createEmitter({
 			frame: 'blue',
 			x: { min: (this.x - this.partOffset), max: (this.x + this.partOffset) },
@@ -200,7 +195,6 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 
         this.body.setVelocityX(0);
         this.body.setVelocityY(0);
-        
     }
 
     StopDashParticles(_scene)
