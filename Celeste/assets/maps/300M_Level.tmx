@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="13">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="16">
  <editorsettings>
-  <export format="json"/>
+  <export target="300M_Level.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="../tilesets/CelesteClassic_SoftDecorations.tsx"/>
  <tileset firstgid="10" source="../tilesets/CelesteClassic_Spikes.tsx"/>
@@ -96,7 +96,6 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,86,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -104,10 +103,22 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,126,0,0,0,0,0,0,0,126,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="14" name="Springs">
+  <object id="13" name="Spring_1" class="Spring" x="176.5" y="465">
+   <point/>
+  </object>
+  <object id="14" name="Spring_2" class="Spring" x="432" y="465.5">
+   <point/>
+  </object>
+  <object id="15" name="Berry" class="Strawberry" x="48.5" y="210">
+   <point/>
+  </object>
+ </objectgroup>
  <layer id="10" name="Decorations" width="16" height="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

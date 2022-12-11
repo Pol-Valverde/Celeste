@@ -24,7 +24,7 @@ class ThreeHundredM extends Phaser.Scene
 
         // --- Tilemap Json: ---
         this.load.tilemapTiledJSON('300M_Level','300M_Level.json');
-        this.load.json('jsonlvl1','300M_Level.json');
+        this.load.json('300M_Json','300M_Level.json');
     }
 
 	create()
@@ -53,12 +53,22 @@ class ThreeHundredM extends Phaser.Scene
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
         this.map.setCollisionByExclusion(-1, true, true, 'Spikes');
         this.map.setCollisionByExclusion(-1, true, true, 'Everything');
-        this.data = this.cache.json.get('jsonlvl1');
+        //this.data = this.cache.json.get('jsonlvl1');
         
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        this.hero = new heroPrefab(this, 44, 400); // Jan [11/12/2022]: Updated these
+        // TESTEO: Provo d'spawnejar el Player a la posició de la 1a Spring
+        this.data = this.cache.json.get('300M_Json');
+
+        console.log("Amount of layers: " + this.data.layers.length);
+        console.log("Layer 5 ID: " + this.data.layers[5].id);
+
+        var _posX = this.data.layers[5].objects[0].x; // x position of the "1st ELEMENT" from the "1st LAYER" (layer 0 does not exist)
+        var _posY = this.data.layers[5].objects[0].y; // y position of the "1st ELEMENT" from the "1st LAYER" (layer 0 does not exist)
+        this.hero = new heroPrefab(this, _posX, _posY);
+
+        // this.hero = new heroPrefab(this, 44, 400); // Jan [11/12/2022]: Updated these
         
         this.physics.add.collider
         (

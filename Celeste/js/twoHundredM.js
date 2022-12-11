@@ -23,7 +23,7 @@ class TwoHundredM extends Phaser.Scene
 
         // --- Tilemap Json: ---
         this.load.tilemapTiledJSON('200M_Level','200M_Level.json');
-        this.load.json('jsonlvl1','200M_Level.json');
+        this.load.json('200M_Json','200M_Level.json');
     }
 
 	create()
@@ -49,7 +49,7 @@ class TwoHundredM extends Phaser.Scene
         // --- Tilemap Collisions: ---
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
         this.map.setCollisionByExclusion(-1,true, true, 'Spikes')
-        this.data = this.cache.json.get('jsonlvl1');
+        this.data = this.cache.json.get('200M_Json');
         
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);

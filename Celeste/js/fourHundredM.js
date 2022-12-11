@@ -25,7 +25,7 @@ class FourHundredM extends Phaser.Scene
 
         // --- Tilemap Json: ---
         this.load.tilemapTiledJSON('400M_Level','400M_Level.json');
-        this.load.json('jsonlvl1','400M_Level.json');
+        this.load.json('400M_Json','400M_Level.json');
     }
 
 	create()
@@ -54,7 +54,7 @@ class FourHundredM extends Phaser.Scene
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
         this.map.setCollisionByExclusion(-1, true, true, 'Spikes');
         this.map.setCollisionByExclusion(-1, true, true, 'Everything');
-        this.data = this.cache.json.get('jsonlvl1');
+        this.data = this.cache.json.get('400M_Json');
         
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);

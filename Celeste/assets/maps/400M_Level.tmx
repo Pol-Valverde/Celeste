@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="13">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="28">
  <editorsettings>
-  <export format="json"/>
+  <export target="400M_Level.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="../tilesets/CelesteClassic_SoftDecorations.tsx"/>
  <tileset firstgid="10" source="../tilesets/CelesteClassic_Spikes.tsx"/>
@@ -94,20 +94,61 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,87,86,2147483735,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,118,118,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,118,118,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,118,118,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,118,118,0,0,
-0,0,0,0,0,0,0,0,118,118,0,0,0,0,0,0,
-0,0,0,0,118,118,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="14" name="Breaking_Blocks">
+  <object id="14" name="BBlock_1" class="BreakingBlock" x="144" y="497.5">
+   <point/>
+  </object>
+  <object id="15" name="BBlock_2" class="BreakingBlock" x="175.5" y="497.5">
+   <point/>
+  </object>
+  <object id="16" name="BBlock_3" class="BreakingBlock" x="272.5" y="465.5">
+   <point/>
+  </object>
+  <object id="17" name="BBlock_4" class="BreakingBlock" x="304" y="465.5">
+   <point/>
+  </object>
+  <object id="18" name="BBlock_5" class="BreakingBlock" x="400.5" y="433.5">
+   <point/>
+  </object>
+  <object id="19" name="BBlock_6" class="BreakingBlock" x="432" y="433.5">
+   <point/>
+  </object>
+  <object id="20" name="BBlock_7" class="BreakingBlock" x="464.5" y="369.5">
+   <point/>
+  </object>
+  <object id="21" name="BBlock_8" class="BreakingBlock" x="496" y="369.5">
+   <point/>
+  </object>
+  <object id="22" name="BBlock_9" class="BreakingBlock" x="368.5" y="305.5">
+   <point/>
+  </object>
+  <object id="23" name="BBlock_10" class="BreakingBlock" x="400" y="305.5">
+   <point/>
+  </object>
+  <object id="24" name="BBlock_11" class="BreakingBlock" x="400.5" y="209.5">
+   <point/>
+  </object>
+  <object id="25" name="BBlock_12" class="BreakingBlock" x="432" y="209.5">
+   <point/>
+  </object>
+  <object id="27" name="Berry" class="FlyingStrawberry" x="80.5" y="147">
+   <point/>
+  </object>
+ </objectgroup>
  <layer id="10" name="Decorations" width="16" height="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
