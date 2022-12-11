@@ -26,6 +26,14 @@ class FourHundredM extends Phaser.Scene
         // --- Tilemap Json: ---
         this.load.tilemapTiledJSON('400M_Level','400M_Level.json');
         this.load.json('400M_Json','400M_Level.json');
+
+        // --- Audio: ---
+        this.load.setPath('assets/sounds/');
+        this.load.audio('dash','dash.wav');
+        this.load.audio('die','die.wav');
+        this.load.audio('jump','jump.wav');
+        this.load.audio('menuStart','menuStart.wav');
+        this.load.audio('strawBerry','strawBerry.wav');
     }
 
 	create()
@@ -59,7 +67,7 @@ class FourHundredM extends Phaser.Scene
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        this.hero = new heroPrefab(this, 44, 368); // Jan [11/12/2022]: Updated these
+        this.hero = new heroPrefab(this, 44, 368);
         
         this.physics.add.collider
         (
@@ -83,7 +91,10 @@ class FourHundredM extends Phaser.Scene
         );
 
         this.loadObjects();
+
         this.loadAnimations();
+
+        this.loadSounds();
 
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
         this.dashParticles = this.add.particles('flares').setScale(1);
@@ -92,11 +103,11 @@ class FourHundredM extends Phaser.Scene
         this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
-			y: { min: -2548, max: 2548 }, // Jan [11/12/2022]: Updated these
+			y: { min: -2548, max: 2548 },
 			lifespan: 20000,
-			speedX: { min: 50, max: 500 }, // Jan [11/12/2022]: Updated these
-			speedY: { min:-50, max: 50 }, // Jan [11/12/2022]: Updated these
-			scale: { start: 0.025, end: 0.025 }, // Jan [11/12/2022]: Updated these
+			speedX: { min: 50, max: 500 },
+			speedY: { min:-50, max: 50 },
+			scale: { start: 0.025, end: 0.025 },
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
@@ -104,11 +115,11 @@ class FourHundredM extends Phaser.Scene
 		this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
-			y: { min: -4096, max: 4096 }, // Jan [11/12/2022]: Updated these
+			y: { min: -4096, max: 4096 },
 			lifespan: 20000,
-			speedX: { min: 200, max: 500 }, // Jan [11/12/2022]: Updated these
-			speedY: { min:-50, max: 50 }, // Jan [11/12/2022]: Updated these
-			scale: { start: 0.05, end: 0.05 }, // Jan [11/12/2022]: Updated these
+			speedX: { min: 200, max: 500 },
+			speedY: { min:-50, max: 50 },
+			scale: { start: 0.05, end: 0.05 },
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
@@ -116,7 +127,9 @@ class FourHundredM extends Phaser.Scene
 
     hit()
     {
-        this.hero.body.reset(48, 368); // Jan [11/12/2022]: Updated these
+        this.die.play();
+
+        this.hero.body.reset(48, 368);
         this.cameras.main.shake(100,0.05);
         this.cameras.main.flash(200,0,0,0);
         this.dashParticles.destroy()
@@ -168,6 +181,15 @@ class FourHundredM extends Phaser.Scene
         })
     }
 
+    loadSounds()
+    {
+        this.dash = this.sound.add('dash');
+		this.die = this.sound.add('die');
+		this.jump = this.sound.add('jump');
+		this.menuStart = this.sound.add('menuStart');
+		this.strawBerry = this.sound.add('strawBerry');
+    }
+
 	update()
     {
         // --- JUMP: ---
@@ -176,6 +198,8 @@ class FourHundredM extends Phaser.Scene
             this.hero.isCUp = false;
             if(this.hero.body.blocked.down)
             {
+                this.jump.play();
+
                 this.hero.body.setVelocityY(-gamePrefs.HERO_JUMP);
             }
             else if((this.hero.wallSliding || this.hero.canWallJump) && !this.hero.wallJumping)
@@ -192,6 +216,8 @@ class FourHundredM extends Phaser.Scene
         // --- DASH: ---
         if (this._x.isDown && this.hero.canDash && !this.hero.dashing )
         {
+            this.dash.play();
+
             this.cameras.main.shake(50,0.05);
             if(this.dashedParticles == false)
             {

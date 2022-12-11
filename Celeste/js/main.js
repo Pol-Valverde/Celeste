@@ -1,17 +1,17 @@
 var gamePrefs=
 {
-    HERO_JUMP: 500, // Jan [11/12/2022]: Updated these
-    HERO_WALLJUMP_X: 320, // Jan [11/12/2022]: Updated these || //hauria de ser 3,75 tiles
-    HERO_WALLJUMP_Y: 320, // Jan [11/12/2022]: Updated these
+    HERO_JUMP: 500,
+    HERO_WALLJUMP_X: 320,//hauria de ser 3,75 tiles
+    HERO_WALLJUMP_Y: 320,
     HERO_WALLJUMP_TIME: 255,
-    HERO_DASH: 1000, // Jan [11/12/2022]: Updated these
-    HERO_SPEED: 256, // Jan [11/12/2022]: Updated these
+    HERO_DASH: 1000,
+    HERO_SPEED: 256,
     BREAKINGGROUND_BREAK_TIME: 1500,
     BREAKINGGROUND_RECOVER_TIME: 1000,
     ENEMY_SPEED: 100,
-    GRAVITY: 1400, // Jan [11/12/2022]: Updated these
-    GAME_WIDTH: 512, // Jan [11/12/2022]: Updated this
-    GAME_HEIGHT: 512, // Jan [11/12/2022]: Updated this
+    GRAVITY: 1400,
+    GAME_WIDTH: 512,
+    GAME_HEIGHT: 512,
     LEVEL1_WIDTH: 1280,
     LEVEL1_HEIGHT: 800
 }

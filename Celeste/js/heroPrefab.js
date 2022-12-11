@@ -2,7 +2,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 {
     constructor(_scene, _positionX, _positionY, _spriteTag = 'madeline')
     {
-        super(_scene, _positionX, _positionY, _spriteTag).setScale(4); // Jan [11/12/2022]: Updated scale value
+        super(_scene, _positionX, _positionY, _spriteTag).setScale(4);
         _scene.add.existing(this);
         _scene.physics.world.enable(this);
         this.cursores = _scene.input.keyboard.createCursorKeys();
@@ -17,7 +17,6 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.isCUp = true;
         this.speedXParticles = 0.0;
         this.speedYParticles = 0.0;
-
     }
 
     preUpdate(time, delta)
@@ -115,6 +114,8 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 
     WallJump(_scene)
     {
+        this.scene.jump.play();
+
         this.wallJumping = true;
         this.body.allowGravity = false;
         this.body.setVelocityY(-gamePrefs.HERO_WALLJUMP_Y);

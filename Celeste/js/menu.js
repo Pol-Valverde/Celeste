@@ -13,6 +13,9 @@ class menu extends Phaser.Scene{
 		this.load.image('celeste','Celeste_MainMenu_Image.png');
 		this.load.atlas('flares', 'Snow.png', 'flares.json');
 		this.load.atlas('celesteFlares', 'CelesteWhite2.png', 'flares.json');
+
+		this.load.setPath('assets/sounds/');
+        this.load.audio('menuStart','menuStart.wav');
     }
 	
 	create()
@@ -22,11 +25,11 @@ class menu extends Phaser.Scene{
 		this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
-			y: { min: -2548, max: 2548 }, // Jan [11/12/2022]: Updated these
+			y: { min: -2548, max: 2548 },
 			lifespan: 20000,
-			speedX: { min: 50, max: 500 }, // Jan [11/12/2022]: Updated these
-			speedY: { min:-50, max: 50 }, // Jan [11/12/2022]: Updated these
-			scale: { start: 0.025, end: 0.025 }, // Jan [11/12/2022]: Updated these
+			speedX: { min: 50, max: 500 },
+			speedY: { min:-50, max: 50 },
+			scale: { start: 0.025, end: 0.025 },
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
@@ -34,16 +37,16 @@ class menu extends Phaser.Scene{
 		this.particles.createEmitter({
 			frame: 'blue',
 			x: -10,
-			y: { min: -4096, max: 4096 }, // Jan [11/12/2022]: Updated these
+			y: { min: -4096, max: 4096 },
 			lifespan: 20000,
-			speedX: { min: 200, max: 500 }, // Jan [11/12/2022]: Updated these
-			speedY: { min:-50, max: 50 }, // Jan [11/12/2022]: Updated these
-			scale: { start: 0.05, end: 0.05 }, // Jan [11/12/2022]: Updated these
+			speedX: { min: 200, max: 500 },
+			speedY: { min:-50, max: 50 },
+			scale: { start: 0.05, end: 0.05 },
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
 
-		this.celesteImage = this.add.sprite(config.width/2, 132, 'celeste').setOrigin(0.5).setScale(4); // Jan [11/12/2022]: Updated these
+		this.celesteImage = this.add.sprite(config.width/2, 132, 'celeste').setOrigin(0.5).setScale(4);
 
 		this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
 		this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
@@ -51,12 +54,12 @@ class menu extends Phaser.Scene{
 		this.startKeysText = this.add.text
 		(
 			config.width/2, 
-			config.height/2 - 4, // Jan [11/12/2022]: Updated these
+			config.height/2 - 4,
 			'X+C',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 32 // Jan [11/12/2022]: Updated these
+				fontSize: 32
 				
 			}
 		).setOrigin(.5);
@@ -64,24 +67,24 @@ class menu extends Phaser.Scene{
 		this.polValverde = this.add.text
 		(
 			config.width/2,
-			config.height/2 + 84, // Jan [11/12/2022]: Updated these
+			config.height/2 + 84,
 			'Pol Valverde',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 32 // Jan [11/12/2022]: Updated these
+				fontSize: 32
 			}
 		).setOrigin(.5);
 
 		this.ericRuiz = this.add.text
 		(
 			config.width/2,
-			config.height/2 + 124, // Jan [11/12/2022]: Updated these
+			config.height/2 + 124,
 			'Eric Ruiz',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 32 // Jan [11/12/2022]: Updated these
+				fontSize: 32
 				
 			}
 		).setOrigin(.5);
@@ -89,25 +92,29 @@ class menu extends Phaser.Scene{
 		this.janGonzalez = this.add.text
 		(
 			config.width/2,
-			config.height/2 + 164, // Jan [11/12/2022]: Updated these
+			config.height/2 + 164,
 			'Jan Gonzalez',
 			{
 				fontFamily: 'Symtext',
 				fill: '#5f574f',
-				fontSize: 32 // Jan [11/12/2022]: Updated these
+				fontSize: 32
 				
 			}
 		).setOrigin(.5);
+
+		this.menuStart = this.sound.add('menuStart');
 	}
 
 	iniciaJuego()
 	{
 		this.cambiaEscena();
+
+		this.menuStart.play();
 	}
 
 	cambiaEscena()
 	{
-		this.scene.start('100M'); // TORNAR A POSAR AIXÒ A "100M"
+		this.scene.start('100M');
 	}
 
 	update()
