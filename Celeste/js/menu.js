@@ -12,6 +12,7 @@ class menu extends Phaser.Scene{
 		this.load.setPath('assets/sprites/');
 		this.load.image('celeste','Celeste_MainMenu_Image.png');
 		this.load.atlas('flares', 'Snow.png', 'flares.json');
+		this.load.atlas('celesteFlares', 'CelesteWhite2.png', 'flares.json');
     }
 	
 	create()

@@ -104,9 +104,10 @@ class TwoHundredM extends Phaser.Scene
 
     hit()
     {
-        this.hero.body.reset(44, 432); // Jan [11/12/2022]: Updated these
+        this.hero.body.reset(48, 368); // Jan [11/12/2022]: Updated these
         this.cameras.main.shake(100,0.05);
         this.cameras.main.flash(200,0,0,0);
+        this.dashParticles.destroy()
     }
 
     loadAnimations()
@@ -155,11 +156,12 @@ class TwoHundredM extends Phaser.Scene
             if(this.dashedParticles == false)
             {
                 this.dashedParticles = true;
-                this.dashParticles = this.add.particles('celesteWhite').setScale(1); 
+                this.hero.dashedAnim = true;
+                this.dashParticles = this.add.particles('celesteFlares').setScale(1);
             }
-            
             this.hero.JustDashed(this);
             this.timedEvent = this.time.delayedCall(150, this.hero.StopDash, [this], this.hero);
+            this.time.delayedCall(500,this.hero.StopDashParticles,[this],this);
         }
 
         // --- CHANGE LEVEL: ---

@@ -15,6 +15,9 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.canWallJump = false;
         this.dashedAnim = false;
         this.isCUp = true;
+        this.speedXParticles = 0.0;
+        this.speedYParticles = 0.0;
+
     }
 
     preUpdate(time, delta)
@@ -146,28 +149,36 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         {
             this.body.setVelocityY(-gamePrefs.HERO_DASH);
             this.velY = -gamePrefs.HERO_DASH;
+            this.speedYParticles = -1.0;
+
+
         }
         else if(this.cursores.down.isDown)
         {
             this.body.setVelocityY(gamePrefs.HERO_DASH);
             this.velY = gamePrefs.HERO_DASH;
+            this.speedYParticles = 1.0;
         }
         else
         {
             this.body.setVelocityY(0);
+            this.speedYParticles = 0.0;
         }
 
         if(this.cursores.right.isDown)
         {
             this.body.setVelocityX(gamePrefs.HERO_DASH);
+            this.speedXParticles = 1.0;
         }
         else if(this.cursores.left.isDown)
         {
             this.body.setVelocityX(-gamePrefs.HERO_DASH);
+            this.speedXParticles = -1.0;
         }
         else
         {
             this.body.setVelocityX(0);
+            this.speedXParticles = 0.0;
         }
         
         this.partOffset = 10;
@@ -176,10 +187,10 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 			frame: 'blue',
 			x: { min: (this.x - this.partOffset), max: (this.x + this.partOffset) },
 			y: { min: (this.y - this.partOffset), max: (this.y + this.partOffset) },
-			lifespan: 10000,
-			speedX: { min: 25 / 4, max: 50 / 4 },
-			speedY: { min:-10 / 4, max: 10 / 4},
-			scale: { start: 0.025 / 4, end: 0 },
+			lifespan: 750,
+			speedX: {start:this.speedXParticles * -200, end:0},
+			speedY: this.speedYParticles * -100,
+			scale: { start:0.1, end: 0 },
 			quantity: 0.0000001,
 			blendMode: 'ADD'
 		});
@@ -195,6 +206,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 
         this.body.setVelocityX(0);
         this.body.setVelocityY(0);
+        
     }
 
     StopDashParticles(_scene)

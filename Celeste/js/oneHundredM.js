@@ -6,9 +6,7 @@ class OneHundredM extends Phaser.Scene
     }
 
 	preload()
-    {
-        this.load.setPath('assets/sprites/');
-        this.load.atlas('celesteWhite', 'CelesteWhite2.png', 'flares.json');
+    {   
         this.load.setPath('assets/tilesets/');
 
         // --- Tilemap Images: ---
@@ -30,35 +28,7 @@ class OneHundredM extends Phaser.Scene
 
 	create()
     {
-        this.dashedParticles = false
-
-        this.dashParticles = this.add.particles('celesteWhite').setScale(1);
-
-        this.dashParticles.createEmitter({
-			frame: 'blue',
-			x: -10,
-			y: { min: -2548, max: 2548 }, // Jan [11/12/2022]: Updated these
-			lifespan: 20000,
-			speedX: { min: 50, max: 500 }, // Jan [11/12/2022]: Updated these
-			speedY: { min:-50, max: 50 }, // Jan [11/12/2022]: Updated these
-			scale: { start: 0.025, end: 0.025 }, // Jan [11/12/2022]: Updated these
-			quantity: 0.00001,
-			blendMode: 'ADD'
-		});
-
-		this.dashParticles.createEmitter({
-			frame: 'blue',
-			x: -10,
-			y: { min: -4096, max: 4096 }, // Jan [11/12/2022]: Updated these
-			lifespan: 20000,
-			speedX: { min: 200, max: 500 }, // Jan [11/12/2022]: Updated these
-			speedY: { min:-50, max: 50 }, // Jan [11/12/2022]: Updated these
-			scale: { start: 0.05, end: 0.05 }, // Jan [11/12/2022]: Updated these
-			quantity: 0.00001,
-			blendMode: 'ADD'
-		});
-
-        this.dashedParticles = false;
+       
 
         this.map = this.add.tilemap('100M_Level');
 
@@ -105,6 +75,8 @@ class OneHundredM extends Phaser.Scene
   
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
         
+        this.dashParticles = this.add.particles('celesteFlares').setScale(1);
+        
         this.particles = this.add.particles('flares').setScale(1);
 
         this.particles.createEmitter({
@@ -130,6 +102,9 @@ class OneHundredM extends Phaser.Scene
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
+        this.dashedParticles = false
+
+        
     }
 
     hit()
@@ -137,6 +112,7 @@ class OneHundredM extends Phaser.Scene
         this.hero.body.reset(48, 368); // Jan [11/12/2022]: Updated these
         this.cameras.main.shake(100,0.05);
         this.cameras.main.flash(200,0,0,0);
+        this.dashParticles.destroy()
     }
 
     loadAnimations()
@@ -185,12 +161,13 @@ class OneHundredM extends Phaser.Scene
             if(this.dashedParticles == false)
             {
                 this.dashedParticles = true;
-                this.dashParticles = this.add.particles('celesteWhite').setScale(1); 
                 this.hero.dashedAnim = true;
+                this.dashParticles = this.add.particles('celesteFlares').setScale(1);
             }
-            
             this.hero.JustDashed(this);
             this.timedEvent = this.time.delayedCall(150, this.hero.StopDash, [this], this.hero);
+            this.time.delayedCall(500,this.hero.StopDashParticles,[this],this);
+            
         }
 
         // --- CHANGE LEVEL: ---
