@@ -13,6 +13,7 @@ class menu extends Phaser.Scene{
 		this.load.image('celeste','Celeste_MainMenu_Image.png');
 		this.load.atlas('flares', 'Snow.png', 'flares.json');
 		this.load.atlas('celesteFlares', 'CelesteWhite2.png', 'flares.json');
+		this.load.atlas('backgroundClouds', 'backgroundN.png', 'flares.json');
 
 		this.load.setPath('assets/sounds/');
         this.load.audio('menuStart','menuStart.wav');
@@ -29,7 +30,8 @@ class menu extends Phaser.Scene{
 			lifespan: 20000,
 			speedX: { min: 50, max: 500 },
 			speedY: { min:-50, max: 50 },
-			scale: { start: 0.025, end: 0.025 },
+			scale:  0.025,
+			scaleX: 5,
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});

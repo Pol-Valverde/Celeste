@@ -49,6 +49,21 @@ class FiveHundredM extends Phaser.Scene
         this.map.addTilesetImage('CelesteClassic_Spikes');
         this.map.addTilesetImage('CelesteClassic_Everything');
 
+        //background Particles
+        this.cloudParticles = this.add.particles('backgroundClouds').setScale(1);
+
+        this.cloudParticles.createEmitter({
+			frame: 'green',
+			x: -10,
+			y: { min: -3000, max: 3000 },
+			lifespan: 20000,
+			speedX: { min: 200, max: 500 },
+			scale: 0.25,
+			quantity: 0.00001,
+			blendMode: 'ADD'
+		});
+        
+
         // --- Tilemap Layers: ---
         this.map.createLayer('Background',  'CelesteClassic_Background');
         this.map.createLayer('Decorations', 'CelesteClassic_SoftDecorations');
