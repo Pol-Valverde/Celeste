@@ -131,7 +131,7 @@ class TwoHundredM extends Phaser.Scene
     {
         this.die.play();
 
-        this.hero.body.reset(48, 368);
+        this.hero.body.reset(48, 432);
         this.cameras.main.shake(100,0.05);
         this.cameras.main.flash(200,0,0,0);
         this.dashParticles.destroy()

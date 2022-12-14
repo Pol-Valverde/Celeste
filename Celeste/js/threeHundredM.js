@@ -11,11 +11,9 @@ class ThreeHundredM extends Phaser.Scene
 
         // --- Tilemap Images: ---
         this.load.image('CelesteClassic_Walls',                 'CelesteClassic_Walls.png'); // JAN: carreguem tot el tileset que farem servir
-        //this.load.image('CelesteClassic_Breakable_Walls',     'CelesteClassic_Walls.png');
         this.load.image('CelesteClassic_Background',            'CelesteClassic_Background.png');
         this.load.image('CelesteClassic_SoftDecorations',       'CelesteClassic_SoftDecorations.png');
         this.load.image('CelesteClassic_Spikes',                'CelesteClassic_Spikes.png');
-        this.load.image('CelesteClassic_Everything',            'CelesteClassic_Everything.png');
 
         this.load.setPath('assets/sprites/');
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
@@ -43,11 +41,9 @@ class ThreeHundredM extends Phaser.Scene
 
         // --- Tilemap Tileset Images: ---
         this.map.addTilesetImage('CelesteClassic_Walls');
-        // this.map.addTilesetImage('CelesteClassic_Breakable_Walls');
         this.map.addTilesetImage('CelesteClassic_Background');
         this.map.addTilesetImage('CelesteClassic_SoftDecorations');
         this.map.addTilesetImage('CelesteClassic_Spikes');
-        this.map.addTilesetImage('CelesteClassic_Everything');
         
         //background Particles
         this.cloudParticles = this.add.particles('backgroundClouds').setScale(1);
@@ -62,27 +58,23 @@ class ThreeHundredM extends Phaser.Scene
             quantity: 0.00001,
             blendMode: 'ADD'
         });
+
         // --- Tilemap Layers: ---
         this.map.createLayer('Background',  'CelesteClassic_Background');
         this.map.createLayer('Decorations', 'CelesteClassic_SoftDecorations');
         this.walls =            this.map.createLayer('Walls_Ground_&_Ceiling',  'CelesteClassic_Walls');
-        this.breakable_walls =  this.map.createLayer('Breakable_Walls',         'CelesteClassic_Walls');
         this.spikes =           this.map.createLayer('Spikes',                  'CelesteClassic_Spikes');
-        this.everything =       this.map.createLayer('Everything',              'CelesteClassic_Everything');
 
         // --- Tilemap Collisions: ---
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
         this.map.setCollisionByExclusion(-1, true, true, 'Spikes');
-        this.map.setCollisionByExclusion(-1, true, true, 'Everything');
-        //this.data = this.cache.json.get('jsonlvl1');
-        
+        this.data = this.cache.json.get('300M_Json');
+
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        // TESTEO: Provo d'spawnejar el Player a la posició de la 1a Spring
-        this.data = this.cache.json.get('300M_Json');
-
         this.hero = new heroPrefab(this, 44, 400);
+        //this.hero = new heroPrefab(this, this.data.layers[3].objects[0].x, this.data.layers[3].objects[0].y);
         
         this.physics.add.collider
         (
