@@ -21,7 +21,7 @@ var config =
     type: Phaser.AUTO,
     width: gamePrefs.GAME_WIDTH,
     height: gamePrefs.GAME_HEIGHT,
-    scene:[menu, OneHundredM, TwoHundredM, ThreeHundredM, FourHundredM, FiveHundredM, SixHundredM], //array con los niveles/pantallas/escenas (unity)
+    scene:[menu, OneHundredM, TwoHundredM, ThreeHundredM, FourHundredM, FiveHundredM, SixHundredM, SevenHundredM], //array con los niveles/pantallas/escenas (unity)
     render:
     {
         pixelArt:true

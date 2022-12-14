@@ -1,8 +1,8 @@
-class SixHundredM extends Phaser.Scene
+class SevenHundredM extends Phaser.Scene
 {
 	constructor()
     {
-        super({key:'600M'});
+        super({key:'700M'});
     }
 
 	preload()
@@ -21,8 +21,8 @@ class SixHundredM extends Phaser.Scene
         this.load.setPath('assets/maps/');
 
         // --- Tilemap Json: ---
-        this.load.tilemapTiledJSON('600M_Level','600M_Level.json');
-        this.load.json('600M_Json','600M_Level.json');
+        this.load.tilemapTiledJSON('700M_Level','700M_Level.json');
+        this.load.json('700M_Json','700M_Level.json');
 
         // --- Audio: ---
         this.load.setPath('assets/sounds/');
@@ -37,7 +37,7 @@ class SixHundredM extends Phaser.Scene
     {
         this.dashedParticles = false;
 
-        this.map = this.add.tilemap('600M_Level');
+        this.map = this.add.tilemap('700M_Level');
 
         // --- Tilemap Tileset Images: ---
         this.map.addTilesetImage('CelesteClassic_Walls');
@@ -70,12 +70,12 @@ class SixHundredM extends Phaser.Scene
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
         this.map.setCollisionByExclusion(-1, true, true, 'Spikes');
 
-        this.data = this.cache.json.get('600M_Json');
+        this.data = this.cache.json.get('700M_Json');
         
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        this.hero = new heroPrefab(this, 48, 320);
+        this.hero = new heroPrefab(this, 80, 416);
         
         this.physics.add.collider
         (
@@ -129,7 +129,7 @@ class SixHundredM extends Phaser.Scene
     {
         this.die.play();
 
-        this.hero.body.reset(48, 320);
+        this.hero.body.reset(80, 416);
         this.cameras.main.shake(100,0.05);
         this.cameras.main.flash(200,0,0,0);
         this.dashParticles.destroy()
@@ -204,7 +204,7 @@ class SixHundredM extends Phaser.Scene
 
         // --- CHANGE LEVEL: ---
         if (this.hero.y < 0)
-            this.scene.start('700M');
+            this.scene.start('100M');
 
         // --- VOID DEATH: ---
         if ((this.hero.y > gamePrefs.GAME_HEIGHT) || (this.hero.x < -3))
