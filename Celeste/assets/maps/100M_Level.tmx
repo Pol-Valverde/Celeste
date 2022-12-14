@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="14">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-up" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="16">
  <editorsettings>
   <export target="100M_Level.json" format="json"/>
  </editorsettings>
@@ -58,26 +58,14 @@
 103,103,103,103,103,96,96,103,103,103,103,103,103,103,103,103
 </data>
  </layer>
- <layer id="7" name="Breakable_Walls" width="16" height="16">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,116,117,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,123,124,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
+ <objectgroup id="15" name="GameObjects">
+  <object id="14" name="Breakable2x2Block" class="BreakableWall" x="64" y="160">
+   <point/>
+  </object>
+  <object id="15" name="Berry" class="Strawberry" x="64" y="160">
+   <point/>
+  </object>
+ </objectgroup>
  <layer id="8" name="Spikes" width="16" height="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
