@@ -91,12 +91,6 @@ class ThreeHundredM extends Phaser.Scene
             this
         );
 
-        this.physics.add.collider
-        (
-            this.everything,
-            this.hero
-        );
-
         this.loadAnimations();
 
         this.loadSounds();

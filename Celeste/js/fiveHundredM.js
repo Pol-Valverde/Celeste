@@ -11,11 +11,9 @@ class FiveHundredM extends Phaser.Scene
 
         // --- Tilemap Images: ---
         this.load.image('CelesteClassic_Walls',                 'CelesteClassic_Walls.png'); // JAN: carreguem tot el tileset que farem servir
-        //this.load.image('CelesteClassic_Breakable_Walls',     'CelesteClassic_Walls.png');
         this.load.image('CelesteClassic_Background',            'CelesteClassic_Background.png');
         this.load.image('CelesteClassic_SoftDecorations',       'CelesteClassic_SoftDecorations.png');
         this.load.image('CelesteClassic_Spikes',                'CelesteClassic_Spikes.png');
-        this.load.image('CelesteClassic_Everything',            'CelesteClassic_Everything.png');
 
         this.load.setPath('assets/sprites/');
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
@@ -43,11 +41,9 @@ class FiveHundredM extends Phaser.Scene
 
         // --- Tilemap Tileset Images: ---
         this.map.addTilesetImage('CelesteClassic_Walls');
-        // this.map.addTilesetImage('CelesteClassic_Breakable_Walls');
         this.map.addTilesetImage('CelesteClassic_Background');
         this.map.addTilesetImage('CelesteClassic_SoftDecorations');
         this.map.addTilesetImage('CelesteClassic_Spikes');
-        this.map.addTilesetImage('CelesteClassic_Everything');
 
         //background Particles
         this.cloudParticles = this.add.particles('backgroundClouds').setScale(1);
@@ -68,14 +64,11 @@ class FiveHundredM extends Phaser.Scene
         this.map.createLayer('Background',  'CelesteClassic_Background');
         this.map.createLayer('Decorations', 'CelesteClassic_SoftDecorations');
         this.walls =            this.map.createLayer('Walls_Ground_&_Ceiling',  'CelesteClassic_Walls');
-        this.breakable_walls =  this.map.createLayer('Breakable_Walls',         'CelesteClassic_Walls');
         this.spikes =           this.map.createLayer('Spikes',                  'CelesteClassic_Spikes');
-        this.everything =       this.map.createLayer('Everything',              'CelesteClassic_Everything');
 
         // --- Tilemap Collisions: ---
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
         this.map.setCollisionByExclusion(-1, true, true, 'Spikes');
-        this.map.setCollisionByExclusion(-1, true, true, 'Everything');
 
         this.data = this.cache.json.get('500M_Json');
         
@@ -97,12 +90,6 @@ class FiveHundredM extends Phaser.Scene
             this.hit,
             null,
             this
-        );
-
-        this.physics.add.collider
-        (
-            this.everything,
-            this.hero
         );
 
         this.loadAnimations();

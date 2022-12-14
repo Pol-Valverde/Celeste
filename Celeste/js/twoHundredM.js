@@ -11,7 +11,6 @@ class TwoHundredM extends Phaser.Scene
 
         // --- Tilemap Images: ---
         this.load.image('CelesteClassic_Walls',                 'CelesteClassic_Walls.png'); // JAN: carreguem tot el tileset que farem servir
-        //this.load.image('CelesteClassic_Breakable_Walls',     'CelesteClassic_Walls.png');
         this.load.image('CelesteClassic_Background',            'CelesteClassic_Background.png');
         this.load.image('CelesteClassic_SoftDecorations',       'CelesteClassic_SoftDecorations.png');
         this.load.image('CelesteClassic_Spikes',                'CelesteClassic_Spikes.png');
@@ -42,7 +41,6 @@ class TwoHundredM extends Phaser.Scene
 
         // --- Tilemap Tileset Images: ---
         this.map.addTilesetImage('CelesteClassic_Walls');
-        // this.map.addTilesetImage('CelesteClassic_Breakable_Walls');
         this.map.addTilesetImage('CelesteClassic_Background');
         this.map.addTilesetImage('CelesteClassic_SoftDecorations');
         this.map.addTilesetImage('CelesteClassic_Spikes');
@@ -61,12 +59,10 @@ class TwoHundredM extends Phaser.Scene
 			blendMode: 'ADD'
 		});
 
-
         // --- Tilemap Layers: ---
         this.map.createLayer('Background',  'CelesteClassic_Background');
         this.map.createLayer('Decorations', 'CelesteClassic_SoftDecorations');
         this.walls =            this.map.createLayer('Walls_Ground_&_Ceiling',  'CelesteClassic_Walls');
-        this.breakable_walls =  this.map.createLayer('Breakable_Walls',         'CelesteClassic_Walls');
         this.spikes =           this.map.createLayer('Spikes',                  'CelesteClassic_Spikes');
 
         // --- Tilemap Collisions: ---

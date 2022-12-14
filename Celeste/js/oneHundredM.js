@@ -11,7 +11,6 @@ class OneHundredM extends Phaser.Scene
 
         // --- Tilemap Images: ---
         this.load.image('CelesteClassic_Walls',                 'CelesteClassic_Walls.png'); // JAN: carreguem tot el tileset que farem servir
-        //this.load.image('CelesteClassic_Breakable_Walls',     'CelesteClassic_Walls.png');
         this.load.image('CelesteClassic_Background',            'CelesteClassic_Background.png');
         this.load.image('CelesteClassic_SoftDecorations',       'CelesteClassic_SoftDecorations.png');
         this.load.image('CelesteClassic_Spikes',                'CelesteClassic_Spikes.png');
@@ -40,12 +39,10 @@ class OneHundredM extends Phaser.Scene
 
         // --- Tilemap Tileset Images: ---
         this.map.addTilesetImage('CelesteClassic_Walls');
-        // this.map.addTilesetImage('CelesteClassic_Breakable_Walls');
         this.map.addTilesetImage('CelesteClassic_Background');
         this.map.addTilesetImage('CelesteClassic_SoftDecorations');
         this.map.addTilesetImage('CelesteClassic_Spikes');
         
-
         //background Particles
         this.cloudParticles = this.add.particles('backgroundClouds').setScale(1);
 
@@ -60,13 +57,10 @@ class OneHundredM extends Phaser.Scene
 			blendMode: 'ADD'
 		});
 
-
-
         // --- Tilemap Layers: ---
         this.map.createLayer('Background',  'CelesteClassic_Background');
         this.map.createLayer('Decorations', 'CelesteClassic_SoftDecorations');
         this.walls =            this.map.createLayer('Walls_Ground_&_Ceiling',  'CelesteClassic_Walls');
-        this.breakable_walls =  this.map.createLayer('Breakable_Walls',         'CelesteClassic_Walls');
         this.spikes =           this.map.createLayer('Spikes',                  'CelesteClassic_Spikes');
 
         // --- Tilemap Collisions: ---
@@ -77,8 +71,7 @@ class OneHundredM extends Phaser.Scene
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        //this.hero = new heroPrefab(this, 48, 368);
-        this.hero = new heroPrefab(this, this.data.layers[2].objects[0].x, this.data.layers[2].objects[0].y);
+        this.hero = new heroPrefab(this, 48, 368);
         
         this.physics.add.collider
         (
