@@ -75,7 +75,7 @@ class FiveHundredM extends Phaser.Scene
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        this.hero = new heroPrefab(this, 44, 336);
+        this.hero = new heroPrefab(this, 48, 336);
         
         this.physics.add.collider
         (
@@ -204,7 +204,7 @@ class FiveHundredM extends Phaser.Scene
 
         // --- CHANGE LEVEL: ---
         if (this.hero.y < 0)
-            this.scene.start('100M');
+            this.scene.start('600M');
 
         // --- VOID DEATH: ---
         if ((this.hero.y > gamePrefs.GAME_HEIGHT) || (this.hero.x < -3))

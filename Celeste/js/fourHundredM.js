@@ -74,7 +74,7 @@ class FourHundredM extends Phaser.Scene
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        this.hero = new heroPrefab(this, 44, 368);
+        this.hero = new heroPrefab(this, 48, 368);
         
         this.physics.add.collider
         (
@@ -138,7 +138,7 @@ class FourHundredM extends Phaser.Scene
 
     loadObjects()
     {
-        var layer = 5;
+        var layer = 3;
 
         for(var i = 0; i < this.data.layers[layer].objects.length; i++)
         {

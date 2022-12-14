@@ -1,8 +1,8 @@
-class TwoHundredM extends Phaser.Scene
+class SixHundredM extends Phaser.Scene
 {
 	constructor()
     {
-        super({key:'200M'});
+        super({key:'600M'});
     }
 
 	preload()
@@ -21,8 +21,8 @@ class TwoHundredM extends Phaser.Scene
         this.load.setPath('assets/maps/');
 
         // --- Tilemap Json: ---
-        this.load.tilemapTiledJSON('200M_Level','200M_Level.json');
-        this.load.json('200M_Json','200M_Level.json');
+        this.load.tilemapTiledJSON('600M_Level','600M_Level.json');
+        this.load.json('600M_Json','600M_Level.json');
 
         // --- Audio: ---
         this.load.setPath('assets/sounds/');
@@ -36,8 +36,8 @@ class TwoHundredM extends Phaser.Scene
 	create()
     {
         this.dashedParticles = false;
-        
-        this.map = this.add.tilemap('200M_Level');
+
+        this.map = this.add.tilemap('600M_Level');
 
         // --- Tilemap Tileset Images: ---
         this.map.addTilesetImage('CelesteClassic_Walls');
@@ -51,13 +51,14 @@ class TwoHundredM extends Phaser.Scene
         this.cloudParticles.createEmitter({
 			frame: 'green',
 			x: -10,
-			y: { min: -2548, max: 2548 },
+			y: { min: -3000, max: 3000 },
 			lifespan: 20000,
 			speedX: { min: 200, max: 500 },
 			scale: 0.25,
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
+        
 
         // --- Tilemap Layers: ---
         this.map.createLayer('Background',  'CelesteClassic_Background');
@@ -67,14 +68,21 @@ class TwoHundredM extends Phaser.Scene
 
         // --- Tilemap Collisions: ---
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
-        this.map.setCollisionByExclusion(-1,true, true, 'Spikes')
-        this.data = this.cache.json.get('200M_Json');
+        this.map.setCollisionByExclusion(-1, true, true, 'Spikes');
+
+        this.data = this.cache.json.get('600M_Json');
         
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        this.hero = new heroPrefab(this, 48, 432);
+        this.hero = new heroPrefab(this, 48, 320);
         
+        this.physics.add.collider
+        (
+            this.walls,
+            this.hero
+        );
+
         this.physics.add.collider
         (
             this.hero,
@@ -82,12 +90,6 @@ class TwoHundredM extends Phaser.Scene
             this.hit,
             null,
             this
-        );
-
-        this.physics.add.collider
-        (
-            this.walls,
-            this.hero
         );
 
         this.loadAnimations();
@@ -122,12 +124,12 @@ class TwoHundredM extends Phaser.Scene
 			blendMode: 'ADD'
 		});
     }
-
+    
     hit()
     {
         this.die.play();
 
-        this.hero.body.reset(48, 432);
+        this.hero.body.reset(48, 320);
         this.cameras.main.shake(100,0.05);
         this.cameras.main.flash(200,0,0,0);
         this.dashParticles.destroy()
@@ -202,15 +204,14 @@ class TwoHundredM extends Phaser.Scene
 
         // --- CHANGE LEVEL: ---
         if (this.hero.y < 0)
-            this.scene.start('300M');
-
+            this.scene.start('100M');
 
         // --- VOID DEATH: ---
-        if((this.hero.y > gamePrefs.GAME_HEIGHT) || (this.hero.x < -3))
+        if ((this.hero.y > gamePrefs.GAME_HEIGHT) || (this.hero.x < -3))
         {
             this.hit();
         }
-        
+
         this.hero.postUpdate();
     }
 }

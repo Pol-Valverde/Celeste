@@ -73,7 +73,7 @@ class ThreeHundredM extends Phaser.Scene
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-        this.hero = new heroPrefab(this, 44, 400);
+        this.hero = new heroPrefab(this, 48, 400);
         //this.hero = new heroPrefab(this, this.data.layers[3].objects[0].x, this.data.layers[3].objects[0].y);
         
         this.physics.add.collider
