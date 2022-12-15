@@ -17,7 +17,7 @@ class SixHundredM extends Phaser.Scene
 
         this.load.setPath('assets/sprites/');
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
-
+        this.load.spritesheet('baloon','BalloonSpritesheet.png',{frameWidth:6, frameHeight:15});
         this.load.setPath('assets/maps/');
 
         // --- Tilemap Json: ---
@@ -95,7 +95,7 @@ class SixHundredM extends Phaser.Scene
         this.loadAnimations();
 
         this.loadSounds();
-
+        this.loadObjects();
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
         this.dashParticles = this.add.particles('flares').setScale(1);
         this.particles = this.add.particles('flares').setScale(1);
@@ -151,6 +151,13 @@ class SixHundredM extends Phaser.Scene
             frameRate:10,
             repeat:-1
         });
+        this.anims.create
+        ({
+            key:'baloon',
+            frames:this.anims.generateFrameNumbers('baloon',{start:0,end:2}),
+            frameRate:10,
+            repeat:-1
+        })
     }
 
     loadSounds()
@@ -161,7 +168,25 @@ class SixHundredM extends Phaser.Scene
 		this.menuStart = this.sound.add('menuStart');
 		this.strawBerry = this.sound.add('strawBerry');
     }
+    loadObjects()
+    {
+        var layer = 1;
 
+        for(var i = 0; i < this.data.layers[layer].objects.length; i++)
+        {
+            var _posX = this.data.layers[layer].objects[i].x;
+            var _posY = this.data.layers[layer].objects[i].y;
+
+            switch(this.data.layers[layer].objects[i].class)
+            {
+                case "Balloon":
+                    var _newBaloon = new baloonPrefab(this, _posX, _posY, 'baloon');
+                    break;
+                case "FlyingStrawberry":
+                    break;
+            }
+        }
+    }
 	update()
     {
         // --- JUMP: ---

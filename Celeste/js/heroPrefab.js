@@ -200,7 +200,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 
     StopDash(_scene)
     {
-        this.canDash = false;
+        //this.canDash = false;
         this.dashing = false;
         this.body.allowGravity = true;
 
