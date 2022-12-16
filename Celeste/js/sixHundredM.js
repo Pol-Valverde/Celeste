@@ -36,7 +36,7 @@ class SixHundredM extends Phaser.Scene
 	create()
     {
         this.dashedParticles = false;
-
+        
         this.map = this.add.tilemap('600M_Level');
 
         // --- Tilemap Tileset Images: ---

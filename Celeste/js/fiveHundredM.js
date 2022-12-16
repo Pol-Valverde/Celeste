@@ -17,7 +17,8 @@ class FiveHundredM extends Phaser.Scene
 
         this.load.setPath('assets/sprites/');
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
-
+        this.load.spritesheet('keySprite','KeySpritesheet2.png',{frameWidth:5,frameHeight:8});
+        this.load.spritesheet('chestSprite','ChestSpritesheet.png',{frameWidth:8,frameHeight:8});
         this.load.setPath('assets/maps/');
 
         // --- Tilemap Json: ---
@@ -36,7 +37,7 @@ class FiveHundredM extends Phaser.Scene
 	create()
     {
         this.dashedParticles = false;
-
+        this.keyPicked = false;
         this.map = this.add.tilemap('500M_Level');
 
         // --- Tilemap Tileset Images: ---
@@ -95,7 +96,7 @@ class FiveHundredM extends Phaser.Scene
         this.loadAnimations();
 
         this.loadSounds();
-
+        this.loadObjects();
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
         this.dashParticles = this.add.particles('flares').setScale(1);
         this.particles = this.add.particles('flares').setScale(1);
@@ -151,6 +152,20 @@ class FiveHundredM extends Phaser.Scene
             frameRate:10,
             repeat:-1
         });
+        this.anims.create
+        ({
+            key:'keyAnim',
+            frames:this.anims.generateFrameNumbers('keySprite',{start:0,end:2}),
+            frameRate:10,
+            repeat:-1
+        })
+        this.anims.create({
+            key:'chestAnim',
+            frames:this.anims.generateFrameNumbers('chestSprite',{start:0,end:0}),
+            frameRate:2,
+            repeat:-1
+
+        })
     }
 
     loadSounds()
@@ -161,7 +176,26 @@ class FiveHundredM extends Phaser.Scene
 		this.menuStart = this.sound.add('menuStart');
 		this.strawBerry = this.sound.add('strawBerry');
     }
+    loadObjects()
+    {
+        var layer = 3;
+        for(var i = 0; i < this.data.layers[layer].objects.length; i++)
+        {
+            var _posX = this.data.layers[layer].objects[i].x;
+            var _posY = this.data.layers[layer].objects[i].y;
 
+            switch(this.data.layers[layer].objects[i].class)
+            {
+                case "Key":
+                    var _newKey = new keyPrefab(this, _posX, _posY, 'keySprite');
+                    break;
+                case "Chest":
+                    //var _newChest
+                    var _newChest = new chestPrefab(this, _posX, _posY, 'chest');
+                    break;
+            }
+        }
+    }
 	update()
     {
         // --- JUMP: ---
