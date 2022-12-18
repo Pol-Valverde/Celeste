@@ -83,7 +83,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 
         if(this.body.velocity.y > 0 && this.body.onWall() && !this.wallJumping)
         {
-            this.body.velocity.y = 20;
+            this.body.velocity.y = 100;
 
             this.wallSliding = true;
         }

@@ -116,7 +116,7 @@ class menu extends Phaser.Scene{
 
 	cambiaEscena()
 	{
-		this.scene.start('500M');
+		this.scene.start('100M');
 	}
 
 	update()

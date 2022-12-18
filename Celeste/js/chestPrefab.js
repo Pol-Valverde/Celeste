@@ -8,7 +8,7 @@ class chestPrefab extends Phaser.GameObjects.Sprite
         this.scene.add.existing(this);
         this.scene.physics.world.enable(this);
         this.beeingDestroyed = false;
-
+        this.startAnim = false;
         this.scene.physics.add.collider
         (
             this,
@@ -26,11 +26,31 @@ class chestPrefab extends Phaser.GameObjects.Sprite
     {
         if(this.scene.keyCatched == true)
         {
-            console.log("Hello");
-            this.scene.physics.world.disable(this); 
-            this.anims.stop().setFrame(1);
+            if(this.startAnim == false)
+            {
+                this.startAnim = true;
+                this.MoveRight();
+                this.scene.time.delayedCall(2000, this.DestroyChest, [], this);
+            }
+            
         }
-        
     }
+    MoveRight()
+    {
+        this.body.setVelocityX(50);
+       this.scene.time.delayedCall(50, this.MoveLeft,[], this);
+    }
+    MoveLeft()
+    {
+        this.body.setVelocityX(-50);
+        this.scene.time.delayedCall(50, this.MoveRight, [], this);
+    }
+    DestroyChest()
+    {
+        console.log("Hello");
+        this.scene.physics.world.disable(this); 
+        this.anims.stop().setFrame(1);
+    }
+    
 
 }

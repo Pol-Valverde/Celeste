@@ -223,7 +223,7 @@ class SixHundredM extends Phaser.Scene
                 this.dashParticles = this.add.particles('celesteFlares').setScale(1);
             }
             this.hero.JustDashed(this);
-            this.timedEvent = this.time.delayedCall(150, this.hero.StopDash, [this], this.hero);
+            this.timedEvent = this.time.delayedCall(gamePrefs.HERO_DASHTIME, this.hero.StopDash, [this], this.hero);
             this.time.delayedCall(500,this.hero.StopDashParticles,[this],this);
         }
 
