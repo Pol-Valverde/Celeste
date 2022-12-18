@@ -1,6 +1,6 @@
 class strawberryPrefab extends Phaser.GameObjects.Sprite
 {
-    constructor(_scene, _positionX, _positionY, _spriteTag = 'TODO')
+    constructor(_scene, _positionX, _positionY, _spriteTag = 'strawberry')
     {
         super(_scene, _positionX, _positionY, _spriteTag).setScale(4);
 

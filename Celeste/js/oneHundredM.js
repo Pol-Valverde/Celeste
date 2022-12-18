@@ -16,6 +16,8 @@ class OneHundredM extends Phaser.Scene
         this.load.image('CelesteClassic_Spikes',                'CelesteClassic_Spikes.png');
 
         this.load.setPath('assets/sprites/');
+        this.load.image('strawberry', 'StrawberrySpritesheet.png');
+        this.load.image('breakeableWall', 'BreakableWallSpritesheet.png');
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
 
         this.load.setPath('assets/maps/');
@@ -89,7 +91,7 @@ class OneHundredM extends Phaser.Scene
         );
 
         this.loadAnimations();
-
+        this.loadObjects();
         this.loadSounds();
   
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
@@ -134,6 +136,26 @@ class OneHundredM extends Phaser.Scene
         this.dashParticles.destroy()
     }
 
+    loadObjects()
+    {
+        var layer = 2;
+        for(var i = 0; i < this.data.layers[layer].objects.length; i++)
+        {
+            var _posX = this.data.layers[layer].objects[i].x;
+            var _posY = this.data.layers[layer].objects[i].y;
+
+            switch(this.data.layers[layer].objects[i].class)
+            {
+                case "Strawberry":
+                    var _newStrawberry = new strawberryPrefab(this, _posX, _posY, 'strawberry');
+                    break;
+                case "BreakableWall":
+                    //var _newBreakableWall = new breakea(this, _posX, _posY, 'keySprite');
+                    break;
+            }
+        }
+    }
+
     loadAnimations()
     {
         this.anims.create
@@ -149,6 +171,13 @@ class OneHundredM extends Phaser.Scene
             frames:this.anims.generateFrameNumbers('madeline',{start:5,end:8}),
             frameRate:10,
             repeat:-1
+        });
+        this.anims.create({
+            key:'float',
+            frames:this.anims.generateFrameNumbers('strawberry',{start:0,end:0}),
+            frameRate:2,
+            repeat:-1
+
         });
     }
 
