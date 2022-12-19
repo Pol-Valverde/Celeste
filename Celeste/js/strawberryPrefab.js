@@ -21,7 +21,27 @@ class strawberryPrefab extends Phaser.GameObjects.Sprite
 
         this.beeingDestroyed = false;
         
+        this.steps = 3;
+        this.stepLength = 10;
+        this.it = 0;
+
         //this.anims.play('strawberryIdle', true); //false? //TODO
+
+        this.scene.time.delayedCall(100, this.moveAnimation, [], this);
+    }
+
+    moveAnimation()
+    {
+        if(this.i < this.stepLength)
+        {
+            i++;
+        }
+        else
+        {
+            i--;
+        }
+
+        this.scene.time.delayedCall(100, this.moveAnimation, [], this);
     }
 
     pickedUp()
@@ -29,4 +49,6 @@ class strawberryPrefab extends Phaser.GameObjects.Sprite
         //make sprite disappear
         //spawnText
     }
+
+    
 }
