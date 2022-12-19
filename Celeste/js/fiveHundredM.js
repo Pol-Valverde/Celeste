@@ -17,8 +17,10 @@ class FiveHundredM extends Phaser.Scene
 
         this.load.setPath('assets/sprites/');
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
+        this.load.image('strawberry', 'StrawberrySpritesheet.png');
         this.load.spritesheet('keySprite','KeySpritesheet2.png',{frameWidth:5,frameHeight:8});
         this.load.spritesheet('chestSprite','ChestSpritesheet.png',{frameWidth:8,frameHeight:8});
+        this.load.spritesheet('strawberryText','strawberryText.png', {frameWidth: 15, frameHeight: 5});
         this.load.setPath('assets/maps/');
 
         // --- Tilemap Json: ---
@@ -166,6 +168,20 @@ class FiveHundredM extends Phaser.Scene
             repeat:-1
 
         })
+        this.anims.create({
+            key:'float',
+            frames:this.anims.generateFrameNumbers('strawberry',{start:1,end:1}),
+            frameRate:2,
+            repeat:-1
+
+        });
+        this.anims.create({
+            key:'textFloat',
+            frames:this.anims.generateFrameNumbers('strawberryText',{start:0,end:1}),
+            frameRate:16,
+            repeat:-1
+
+        });
     }
 
     loadSounds()

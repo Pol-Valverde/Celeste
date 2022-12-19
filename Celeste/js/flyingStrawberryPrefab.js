@@ -1,6 +1,6 @@
-class strawberryPrefab extends Phaser.GameObjects.Sprite
+class flyingStrawberryPrefab extends Phaser.GameObjects.Sprite
 {
-    constructor(_scene, _positionX, _positionY, _spriteTag = 'strawberry')
+    constructor(_scene, _positionX, _positionY, _spriteTag = 'flyingStrawberry')
     {
         super(_scene, _positionX, _positionY, _spriteTag).setScale(4);
 
@@ -29,6 +29,8 @@ class strawberryPrefab extends Phaser.GameObjects.Sprite
         this.timeToStop = 350 
 
         this.pickedUpBerry = false
+
+        this.anims.play('flyStrawberry', false)
 
         this.body.setVelocityY(-this.vel)
         this.scene.time.delayedCall(220, this.updateAnim, [], this);
@@ -78,5 +80,11 @@ class strawberryPrefab extends Phaser.GameObjects.Sprite
     {
         this.alpha = 0
         this.body.setVelocityY(0)
+    }
+
+    flyAway()
+    {
+        this.pickedUpBerry = true
+        this.body.setVelocityY(-225)
     }
 }

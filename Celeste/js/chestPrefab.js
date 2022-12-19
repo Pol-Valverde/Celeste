@@ -4,6 +4,9 @@ class chestPrefab extends Phaser.GameObjects.Sprite
     {
         super(_scene, _positionX, _positionY, _spriteTag).setScale(4);
 
+        this.startPosX = _positionX
+        this.startPosY = _positionY
+
         this.scene = _scene;
         this.scene.add.existing(this);
         this.scene.physics.world.enable(this);
@@ -47,7 +50,9 @@ class chestPrefab extends Phaser.GameObjects.Sprite
     }
     DestroyChest()
     {
-        console.log("Hello");
+        
+        this.strawberryPrefab = new strawberryPrefab(this.scene, this.startPosX, this.startPosY - 20, 'strawberry');
+
         this.scene.physics.world.disable(this); 
         this.anims.stop().setFrame(1);
     }

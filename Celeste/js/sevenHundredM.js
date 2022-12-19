@@ -17,6 +17,7 @@ class SevenHundredM extends Phaser.Scene
 
         this.load.setPath('assets/sprites/');
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
+        this.load.spritesheet('flyingStrawberry','FlyingStrawberrySpritesheet.png', {frameWidth: 20, frameHeight: 9});
 
         this.load.setPath('assets/maps/');
 
@@ -93,7 +94,7 @@ class SevenHundredM extends Phaser.Scene
         );
 
         this.loadAnimations();
-
+        this.loadObjects();
         this.loadSounds();
 
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
@@ -151,6 +152,31 @@ class SevenHundredM extends Phaser.Scene
             frameRate:10,
             repeat:-1
         });
+        this.anims.create
+        ({
+            key:'flyStrawberry',
+            frames:this.anims.generateFrameNumbers('flyingStrawberry',{start:0,end:2}),
+            frameRate:5,
+            repeat:-1
+        })
+    }
+
+    loadObjects()
+    {
+        var layer = 1;
+
+        for(var i = 0; i < this.data.layers[layer].objects.length; i++)
+        {
+            var _posX = this.data.layers[layer].objects[i].x;
+            var _posY = this.data.layers[layer].objects[i].y;
+
+            switch(this.data.layers[layer].objects[i].class)
+            {
+                case "FlyingStrawberry":
+                    this.flyingStrawberry = new flyingStrawberryPrefab(this, _posX, _posY, 'flyingStrawberry');
+                    break;
+            }
+        }
     }
 
     loadSounds()
@@ -189,6 +215,7 @@ class SevenHundredM extends Phaser.Scene
         if (this._x.isDown && this.hero.canDash && !this.hero.dashing )
         {
             this.dash.play();
+            this.flyingStrawberry.flyAway()
 
             this.cameras.main.shake(50,0.05);
             if(this.dashedParticles == false)

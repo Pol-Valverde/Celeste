@@ -16,6 +16,9 @@ class ThreeHundredM extends Phaser.Scene
         this.load.image('CelesteClassic_Spikes',                'CelesteClassic_Spikes.png');
 
         this.load.setPath('assets/sprites/');
+        this.load.image('strawberry', 'StrawberrySpritesheet.png');
+        this.load.spritesheet('strawberryText','strawberryText.png', {frameWidth: 15, frameHeight: 5});
+        this.load.spritesheet('spring','SpringSpritesheet.png', {frameWidth: 8, frameHeight: 8});
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
 
         this.load.setPath('assets/maps/');
@@ -92,7 +95,7 @@ class ThreeHundredM extends Phaser.Scene
         );
 
         this.loadAnimations();
-
+        this.loadObjects();
         this.loadSounds();
 
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
@@ -150,6 +153,47 @@ class ThreeHundredM extends Phaser.Scene
             frameRate:10,
             repeat:-1
         });
+        this.anims.create({
+            key:'float',
+            frames:this.anims.generateFrameNumbers('strawberry',{start:1,end:1}),
+            frameRate:2,
+            repeat:-1
+
+        });
+        this.anims.create({
+            key:'textFloat',
+            frames:this.anims.generateFrameNumbers('strawberryText',{start:0,end:1}),
+            frameRate:16,
+            repeat:-1
+
+        });
+        this.anims.create({
+            key:'springBounce',
+            frames:this.anims.generateFrameNumbers('spring',{start:0,end:1}),
+            frameRate:2,
+            repeat:0
+
+        });
+    }
+
+    loadObjects()
+    {
+        var layer = 3;
+        for(var i = 0; i < this.data.layers[layer].objects.length; i++)
+        {
+            var _posX = this.data.layers[layer].objects[i].x;
+            var _posY = this.data.layers[layer].objects[i].y;
+
+            switch(this.data.layers[layer].objects[i].class)
+            {
+                case "Spring":
+                    var _newSpring = new springPrefab(this, _posX, _posY, 'spring');
+                    break;
+                case "Strawberry":
+                    var _newStrawberry = new strawberryPrefab(this, _posX, _posY, 'strawberry');
+                    break;
+            }
+        }
     }
 
     loadSounds()

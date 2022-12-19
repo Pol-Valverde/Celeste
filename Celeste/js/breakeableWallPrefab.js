@@ -1,6 +1,6 @@
-class springPrefab extends Phaser.GameObjects.Sprite
+class breakeableWallPrefab extends Phaser.GameObjects.Sprite
 {
-    constructor(_scene, _positionX, _positionY, _spriteTag = 'spring')
+    constructor(_scene, _positionX, _positionY, _spriteTag = 'breakeableWall')
     {
         super(_scene, _positionX, _positionY, _spriteTag).setScale(4);
 
@@ -11,22 +11,21 @@ class springPrefab extends Phaser.GameObjects.Sprite
         (
             this,
             this.scene.hero,
-            this.makePlayerJump,
+            this.startDestroy,
             null,
             this
         );
 
         this.body.setAllowGravity(false);
         this.body.immovable = true;
-        
-        this.anims.play('springBounce', true);
-        this.anims.stop().setFrame(1);
     }
 
-    makePlayerJump(_hero)
+    startDestroy()
     {
-        this.scene.hero.body.setVelocityY(-475)
-
-        this.anims.play('springBounce', true);
+        if(this.scene.hero.dashing)
+        {
+            //particles
+            this.destroy()
+        }
     }
 }

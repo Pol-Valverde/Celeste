@@ -18,6 +18,7 @@ class FourHundredM extends Phaser.Scene
         this.load.setPath('assets/sprites/');
 
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
+        this.load.spritesheet('flyingStrawberry','FlyingStrawberrySpritesheet.png', {frameWidth: 20, frameHeight: 9});
         this.load.spritesheet('box','Box.png',{frameWidth: 8, frameHeight: 8});
         this.load.setPath('assets/maps/');
 
@@ -91,9 +92,9 @@ class FourHundredM extends Phaser.Scene
             this
         );
 
-        this.loadObjects();
 
         this.loadAnimations();
+        this.loadObjects();
 
         this.loadSounds();
 
@@ -151,6 +152,7 @@ class FourHundredM extends Phaser.Scene
                     var _newBreakingGround = new breakingGroundPrefab(this, _posX, _posY, 'box');
                     break;
                 case "FlyingStrawberry":
+                    this.flyingStrawberry = new flyingStrawberryPrefab(this, _posX, _posY, 'flyingStrawberry');
                     break;
             }
         }
@@ -172,13 +174,19 @@ class FourHundredM extends Phaser.Scene
             frameRate:10,
             repeat:-1
         });
-
         this.anims.create
         ({
             key:'boxDestroy',
             frames:this.anims.generateFrameNumbers('box',{start:0,end:3}),
             frameRate:2,
             repeat:0
+        })
+        this.anims.create
+        ({
+            key:'flyStrawberry',
+            frames:this.anims.generateFrameNumbers('flyingStrawberry',{start:0,end:2}),
+            frameRate:5,
+            repeat:-1
         })
     }
 
@@ -218,6 +226,7 @@ class FourHundredM extends Phaser.Scene
         if (this._x.isDown && this.hero.canDash && !this.hero.dashing )
         {
             this.dash.play();
+            this.flyingStrawberry.flyAway()
 
             this.cameras.main.shake(50,0.05);
             if(this.dashedParticles == false)
