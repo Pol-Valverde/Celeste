@@ -9,6 +9,8 @@ class menu extends Phaser.Scene{
 	preload()
 	{
 		this.loadFont('Symtext', 'assets/fonts/Symtext.ttf');
+		this.load.bitmapFont('SymtextBitmap','assets/fonts/Symtext2.png','assets/fonts/Symtext.xml'); // Jan: Bitmap related.
+		
 		this.load.setPath('assets/sprites/');
 		this.load.image('celeste','Celeste_MainMenu_Image.png');
 		this.load.atlas('flares', 'Snow.png', 'flares.json');
@@ -52,6 +54,17 @@ class menu extends Phaser.Scene{
 
 		this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
 		this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
+
+		/*
+		this.startKeysTextBitmap = this.add.bitmapText  // Jan: Bitmap related.
+		(  								   				// Jan: Bitmap related.
+			config.width/2,     		   				// Jan: Bitmap related.
+			config.height/2 - 4,  		   				// Jan: Bitmap related.
+			'SymtextBitmap',  			   				// Jan: Bitmap related.
+			'X+C',  					   				// Jan: Bitmap related.
+			32  						   				// Jan: Bitmap related.
+		).setOrigin(.5);  				   				// Jan: Bitmap related.
+		*/
 
 		this.startKeysText = this.add.text
 		(
