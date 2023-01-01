@@ -20,6 +20,8 @@ class OneHundredM extends Phaser.Scene
         this.load.image('strawberry', 'StrawberrySpritesheet.png');
         this.load.spritesheet('strawberryText','strawberryText.png', {frameWidth: 15, frameHeight: 5});
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
+        
+        this.load.spritesheet('textBackground','textBackground.png', {frameWidth: 32, frameHeight: 8});
 
         this.load.setPath('assets/maps/');
 
@@ -125,6 +127,8 @@ class OneHundredM extends Phaser.Scene
 			blendMode: 'ADD'
 		});
         this.dashedParticles = false
+
+        this.gameTimer = new inGametimer(this, 80, 30, 'textBackground');
     }
 
     hit()
@@ -135,6 +139,8 @@ class OneHundredM extends Phaser.Scene
         this.cameras.main.shake(100,0.05);
         this.cameras.main.flash(200,0,0,0);
         this.dashParticles.destroy()
+
+        this.gameTimer.show();
     }
 
     loadObjects()
@@ -198,8 +204,10 @@ class OneHundredM extends Phaser.Scene
 		this.strawBerry = this.sound.add('strawBerry');
     }
 
-	update()
+	update(time, delta)
     {
+        totalTime += delta;
+
         // --- JUMP: ---
         if (this._c.isDown && this.hero.isCUp)
         {

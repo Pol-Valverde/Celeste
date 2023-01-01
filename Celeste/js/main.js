@@ -2,7 +2,7 @@ var gamePrefs=
 {
     HERO_JUMP: 365,
     HERO_WALLJUMP_X: 320,//hauria de ser 3,75 tiles
-    HERO_WALLJUMP_Y: 320,
+    HERO_WALLJUMP_Y: 300,
     HERO_WALLJUMP_TIME: 255,
     HERO_DASH: 450,
     HERO_SPEED: 256,
@@ -18,6 +18,8 @@ var gamePrefs=
     LEVEL1_WIDTH: 1280,
     LEVEL1_HEIGHT: 800
 }
+
+var  totalTime = 0;
 
 var config =
 {

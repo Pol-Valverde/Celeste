@@ -18,6 +18,9 @@ class SixHundredM extends Phaser.Scene
         this.load.setPath('assets/sprites/');
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
         this.load.spritesheet('baloon','BalloonSpritesheet.png',{frameWidth:6, frameHeight:15});
+        
+        this.load.spritesheet('textBackground','textBackground.png', {frameWidth: 32, frameHeight: 8});
+
         this.load.setPath('assets/maps/');
 
         // --- Tilemap Json: ---
@@ -123,6 +126,8 @@ class SixHundredM extends Phaser.Scene
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
+        
+        this.gameTimer = new inGametimer(this, 80, 30, 'textBackground');
     }
     
     hit()
@@ -133,6 +138,8 @@ class SixHundredM extends Phaser.Scene
         this.cameras.main.shake(100,0.05);
         this.cameras.main.flash(200,0,0,0);
         this.dashParticles.destroy()
+
+        this.gameTimer.show();
     }
 
     loadAnimations()
@@ -187,8 +194,11 @@ class SixHundredM extends Phaser.Scene
             }
         }
     }
-	update()
+
+	update(time, delta)
     {
+        totalTime += delta;
+        
         // --- JUMP: ---
         if (this._c.isDown && this.hero.isCUp)
         {
