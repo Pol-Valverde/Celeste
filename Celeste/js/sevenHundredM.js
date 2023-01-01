@@ -18,6 +18,7 @@ class SevenHundredM extends Phaser.Scene
         this.load.setPath('assets/sprites/');
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
         this.load.spritesheet('flyingStrawberry','FlyingStrawberrySpritesheet.png', {frameWidth: 20, frameHeight: 9});
+        this.load.spritesheet('cloudPlatform', 'CloudSpritesheet.png', {frameWidth: 16, frameHeight: 8});
 
         this.load.setPath('assets/maps/');
 
@@ -174,6 +175,12 @@ class SevenHundredM extends Phaser.Scene
             {
                 case "FlyingStrawberry":
                     this.flyingStrawberry = new flyingStrawberryPrefab(this, _posX, _posY, 'flyingStrawberry');
+                    break;
+                case "LeftCloud":
+                    this.newCloud = new cloudPlaformPrefab(this, _posX, _posY, 'cloudPlatform', -1);
+                    break;
+                case "RightCloud":
+                    this.newCloud = new cloudPlaformPrefab(this, _posX, _posY, 'cloudPlatform', 1);
                     break;
             }
         }
