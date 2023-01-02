@@ -146,6 +146,7 @@ class OneHundredM extends Phaser.Scene
     loadObjects()
     {
         var layer = 2;
+        
         for(var i = 0; i < this.data.layers[layer].objects.length; i++)
         {
             var _posX = this.data.layers[layer].objects[i].x;
@@ -158,6 +159,31 @@ class OneHundredM extends Phaser.Scene
                     break;
                 case "Strawberry":
                     var _newStrawberry = new strawberryPrefab(this, _posX, _posY, 'strawberry');
+                    break;
+                case "Spring":
+                    var _newSpring = new springPrefab(this, _posX, _posY, 'spring');
+                    break;
+                case "BreakingBlock":
+                    var _newBreakingGround = new breakingGroundPrefab(this, _posX, _posY, 'box');
+                    break;
+                case "FlyingStrawberry":
+                    this.flyingStrawberry = new flyingStrawberryPrefab(this, _posX, _posY, 'flyingStrawberry');
+                    break;
+                case "Key":
+                    var _newKey = new keyPrefab(this, _posX, _posY, 'keySprite');
+                    break;
+                case "Chest":
+                    //var _newChest
+                    var _newChest = new chestPrefab(this, _posX, _posY, 'chest');
+                    break;
+                case "Balloon":
+                    var _newBaloon = new baloonPrefab(this, _posX, _posY, 'baloon');
+                    break;
+                case "LeftCloud":
+                    this.newCloud = new cloudPlaformPrefab(this, _posX, _posY, 'cloudPlatform', -1);
+                    break;
+                case "RightCloud":
+                    this.newCloud = new cloudPlaformPrefab(this, _posX, _posY, 'cloudPlatform', 1);
                     break;
             }
         }

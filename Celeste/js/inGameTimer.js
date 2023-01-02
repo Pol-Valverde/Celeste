@@ -26,9 +26,9 @@ class inGametimer extends Phaser.GameObjects.Sprite
         
         this.visible = true;
 
-        this.hours = Phaser.Math.RoundTo(totalTime / 3600000, 0);
-        this.minutes = Phaser.Math.RoundTo(totalTime / 60000, 0);
-        this.seconds = Phaser.Math.RoundTo(totalTime / 1000, 0);
+        this.hours = Phaser.Math.RoundTo(totalTime / 3600000, 0) % 60;
+        this.minutes = Phaser.Math.RoundTo(totalTime / 60000, 0) % 60;
+        this.seconds = Phaser.Math.RoundTo(totalTime / 1000, 0) % 60;
         console.log(totalTime);
 
         this.scene.timeText = this.scene.add.text
