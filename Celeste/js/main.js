@@ -16,7 +16,8 @@ var gamePrefs=
     GAME_WIDTH: 512,
     GAME_HEIGHT: 512,
     LEVEL1_WIDTH: 1280,
-    LEVEL1_HEIGHT: 800
+    LEVEL1_HEIGHT: 800,
+    MUTE: false
 }
 
 var  totalTime = 0;

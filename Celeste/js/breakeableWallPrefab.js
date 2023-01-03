@@ -25,6 +25,17 @@ class breakeableWallPrefab extends Phaser.GameObjects.Sprite
         if(this.scene.hero.dashing)
         {
             //particles
+            this.scene.dashParticles.createEmitter({
+                frame: 'yellow',
+                x: { min: (this.x - this.partOffset), max: (this.x + this.partOffset) },
+                y: { min: (this.y - 500), max: (this.y + 500) },
+                lifespan: 750,
+                speedX: {start:this.speedXParticles * -50, end:0},
+                speedY: this.speedYParticles * -100,
+                scale: { start:0.05, end: 0 },
+                quantity: 0.0000001,
+                blendMode: 'ADD'
+            });
             this.destroy()
         }
     }

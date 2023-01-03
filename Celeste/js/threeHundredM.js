@@ -77,7 +77,7 @@ class ThreeHundredM extends Phaser.Scene
 
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
-
+        this._s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.hero = new heroPrefab(this, 48, 400);
         //this.hero = new heroPrefab(this, this.data.layers[3].objects[0].x, this.data.layers[3].objects[0].y);
         
@@ -257,7 +257,12 @@ class ThreeHundredM extends Phaser.Scene
 	update(time, delta)
     {
         totalTime += delta;
-        
+        if(this._s.isDown)
+        {
+                gamePrefs.MUTE = !gamePrefs.MUTE;
+                this.game.sound.mute = !gamePrefs.MUTE;
+
+        }
         // --- JUMP: ---
         if (this._c.isDown && this.hero.isCUp)
         {
