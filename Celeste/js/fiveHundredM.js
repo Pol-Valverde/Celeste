@@ -305,11 +305,11 @@ class FiveHundredM extends Phaser.Scene
         }
 
         // --- CHANGE LEVEL: ---
-        if (this.hero.y < 0)
-            this.scene.start('600M');
+        if (this.hero.y < 15)
+        this.scene.start('600M');
 
         // --- VOID DEATH: ---
-        if ((this.hero.y > gamePrefs.GAME_HEIGHT) || (this.hero.x < -3))
+        if((this.hero.y > gamePrefs.GAME_HEIGHT - 15) )
         {
             this.hit();
         }

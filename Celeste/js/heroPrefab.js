@@ -8,7 +8,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
         this.cursores = _scene.input.keyboard.createCursorKeys();
 
         this.canDash = true;
-
+        this.body.collideWorldBounds = true;
         this.wallSliding = false;
         this.wallJumping = false;
         this.lastXDir = 0;
