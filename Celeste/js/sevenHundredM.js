@@ -19,7 +19,7 @@ class SevenHundredM extends Phaser.Scene
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
         this.load.spritesheet('flyingStrawberry','FlyingStrawberrySpritesheet.png', {frameWidth: 20, frameHeight: 9});
         this.load.spritesheet('cloudPlatform', 'CloudSpritesheet.png', {frameWidth: 16, frameHeight: 8});
-        
+        this.load.spritesheet('deadAnim','DEAD_CELESTE_Finished.png',{frameWidth: 32, frameHeight: 32})
         this.load.spritesheet('textBackground','textBackground.png', {frameWidth: 32, frameHeight: 8});
 
         this.load.setPath('assets/maps/');
@@ -129,19 +129,32 @@ class SevenHundredM extends Phaser.Scene
 		});
         
         this.gameTimer = new inGametimer(this, 80, 30, 'textBackground');
+        this.animDead = new AnimDeadMadeline(this,0,0, 'deadAnim');
     }
     
     hit()
     {
         this.die.play();
-
-        this.hero.body.reset(80, 416);
         this.cameras.main.shake(100,0.05);
-        this.cameras.main.flash(200,0,0,0);
+        //this.cameras.main.flash(200,0,0,0);
         this.dashParticles.destroy()
-
-        this.gameTimer.show();
+        this.animDead.body.reset(this.hero.x,this.hero.y);
+        this.animDead.show();
+        this.hero.visible = false;
+        this.hero.body.reset(48, 380);
+        this.physics.world.disable(this.hero);
+        this.time.delayedCall(200,this.recoverPlayer,[],this);
+        
     }
+    recoverPlayer()
+    {
+        this.gameTimer.show();
+        this.hero.anims.play('run',true);
+        this.hero.visible = true;
+        this.physics.world.enable(this.hero);
+        this.hero.body.allowGravity = true;
+    }
+
 
     loadAnimations()
     {
@@ -166,6 +179,13 @@ class SevenHundredM extends Phaser.Scene
             frameRate:5,
             repeat:-1
         })
+        this.anims.create({
+            key:'deadAnimK',
+            frames:this.anims.generateFrameNumbers('deadAnim',{start:0,end:10}),
+            frameRate:24,
+            repeat:0
+
+        });
     }
 
     loadObjects()
