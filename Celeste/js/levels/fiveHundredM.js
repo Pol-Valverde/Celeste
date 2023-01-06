@@ -187,9 +187,9 @@ class FiveHundredM extends Phaser.Scene
         this.anims.create
         ({
             key:'keyAnim',
-            frames:this.anims.generateFrameNumbers('keySprite',{start:0,end:2}),
-            frameRate:10,
-            repeat:-1
+            frames:this.anims.generateFrameNumbers('keySprite',{start:0,end:7}),
+            frameRate:5,
+            repeat:-1,
         })
         this.anims.create({
             key:'chestAnim',
