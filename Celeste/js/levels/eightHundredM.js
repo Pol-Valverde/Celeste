@@ -17,7 +17,9 @@ class EightHundredM extends Phaser.Scene
 
         this.load.setPath('assets/sprites/');
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
-        this.load.spritesheet('flyingStrawberry','FlyingStrawberrySpritesheet.png', {frameWidth: 20, frameHeight: 9});
+        this.load.spritesheet('spring','SpringSpritesheet.png', {frameWidth: 8, frameHeight: 8});
+        this.load.spritesheet('box','Box.png',{frameWidth: 8, frameHeight: 8});
+        this.load.spritesheet('baloon','BalloonSpritesheet.png',{frameWidth:6, frameHeight:15});
         this.load.spritesheet('cloudPlatform', 'CloudSpritesheet.png', {frameWidth: 16, frameHeight: 8});
         this.load.spritesheet('deadAnim','DEAD_CELESTE_Finished.png',{frameWidth: 32, frameHeight: 32})
         this.load.spritesheet('textBackground','textBackground.png', {frameWidth: 32, frameHeight: 8});
@@ -25,8 +27,8 @@ class EightHundredM extends Phaser.Scene
         this.load.setPath('assets/maps/');
 
         // --- Tilemap Json: ---
-        this.load.tilemapTiledJSON('700M_Level','700M_Level.json');
-        this.load.json('700M_Json','700M_Level.json');
+        this.load.tilemapTiledJSON('800M_Level','800M_Level.json');
+        this.load.json('800M_Json','800M_Level.json');
 
         // --- Audio: ---
         this.load.setPath('assets/sounds/');
@@ -41,7 +43,7 @@ class EightHundredM extends Phaser.Scene
     {
         this.dashedParticles = false;
 
-        this.map = this.add.tilemap('700M_Level');
+        this.map = this.add.tilemap('800M_Level');
 
         // --- Tilemap Tileset Images: ---
         this.map.addTilesetImage('CelesteClassic_Walls');
@@ -74,7 +76,7 @@ class EightHundredM extends Phaser.Scene
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
         this.map.setCollisionByExclusion(-1, true, true, 'Spikes');
 
-        this.data = this.cache.json.get('700M_Json');
+        this.data = this.cache.json.get('800M_Json');
         
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
@@ -184,11 +186,24 @@ class EightHundredM extends Phaser.Scene
             frameRate:10,
             repeat:-1
         });
+        this.anims.create({
+            key:'springBounce',
+            frames:this.anims.generateFrameNumbers('spring',{start:0,end:1}),
+            frameRate:2,
+            repeat:0
+        });
         this.anims.create
         ({
-            key:'flyStrawberry',
-            frames:this.anims.generateFrameNumbers('flyingStrawberry',{start:0,end:2}),
-            frameRate:5,
+            key:'boxDestroy',
+            frames:this.anims.generateFrameNumbers('box',{start:0,end:3}),
+            frameRate:2,
+            repeat:0
+        })
+        this.anims.create
+        ({
+            key:'baloon',
+            frames:this.anims.generateFrameNumbers('baloon',{start:0,end:2}),
+            frameRate:10,
             repeat:-1
         })
         this.anims.create({
@@ -305,7 +320,6 @@ class EightHundredM extends Phaser.Scene
         if (this._x.isDown && this.hero.canDash && !this.hero.dashing )
         {
             this.dash.play();
-            this.flyingStrawberry.flyAway()
 
             this.cameras.main.shake(50,0.05);
             if(this.dashedParticles == false)
