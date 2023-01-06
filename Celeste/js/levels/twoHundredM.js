@@ -149,7 +149,7 @@ class TwoHundredM extends Phaser.Scene
         this.animDead.body.reset(this.hero.x,this.hero.y);
         this.animDead.show();
         this.hero.visible = false;
-        this.hero.body.reset(48, 380);
+        this.hero.body.reset(48, 432);
         this.physics.world.disable(this.hero);
         this.time.delayedCall(200,this.recoverPlayer,[],this);
         

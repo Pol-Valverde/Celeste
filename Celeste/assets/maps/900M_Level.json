@@ -59,22 +59,22 @@
                  "y":432.167
                 }, 
                 {
+                  "class":"Strawberry",
+                  "height":0,
+                  "id":36,
+                  "name":"Berry",
+                  "point":true,
+                  "rotation":0,
+                  "visible":true,
+                  "width":0,
+                  "x":256,
+                  "y":64.3333
+                }, 
+                {
                  "class":"BreakableWall",
                  "height":0,
                  "id":35,
                  "name":"Breakable2x2Block",
-                 "point":true,
-                 "rotation":0,
-                 "visible":true,
-                 "width":0,
-                 "x":256,
-                 "y":64.3333
-                }, 
-                {
-                 "class":"Strawberry",
-                 "height":0,
-                 "id":36,
-                 "name":"Berry",
                  "point":true,
                  "rotation":0,
                  "visible":true,

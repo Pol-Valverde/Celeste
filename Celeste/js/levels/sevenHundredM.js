@@ -91,7 +91,7 @@ class SevenHundredM extends Phaser.Scene
         this._9 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NINE);
         this._0 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ZERO);
 
-        this.hero = new heroPrefab(this, 80, 416);
+        this.hero = new heroPrefab(this, 80, 432);
         
         this.physics.add.collider
         (
@@ -153,7 +153,7 @@ class SevenHundredM extends Phaser.Scene
         this.animDead.body.reset(this.hero.x,this.hero.y);
         this.animDead.show();
         this.hero.visible = false;
-        this.hero.body.reset(48, 380);
+        this.hero.body.reset(80, 432);
         this.physics.world.disable(this.hero);
         this.time.delayedCall(200,this.recoverPlayer,[],this);
         
