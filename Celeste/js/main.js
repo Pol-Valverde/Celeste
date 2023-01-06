@@ -1,7 +1,7 @@
 var gamePrefs=
 {
     HERO_JUMP: 365,
-    HERO_WALLJUMP_X: 320,//hauria de ser 3,75 tiles
+    HERO_WALLJUMP_X: 320,
     HERO_WALLJUMP_Y: 300,
     HERO_WALLJUMP_TIME: 255,
     HERO_DASH: 450,
@@ -27,7 +27,7 @@ var config =
     type: Phaser.AUTO,
     width: gamePrefs.GAME_WIDTH,
     height: gamePrefs.GAME_HEIGHT,
-    scene:[menu, OneHundredM, TwoHundredM, ThreeHundredM, FourHundredM, FiveHundredM, SixHundredM, SevenHundredM], //array con los niveles/pantallas/escenas (unity)
+    scene:[menu, OneHundredM, TwoHundredM, ThreeHundredM, FourHundredM, FiveHundredM, SixHundredM, SevenHundredM, EightHundredM, NineHundredM, TenHundredM], //array con los niveles/pantallas/escenas (unity)
     render:
     {
         pixelArt:true

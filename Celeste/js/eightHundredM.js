@@ -1,8 +1,8 @@
-class FourHundredM extends Phaser.Scene
+class EightHundredM extends Phaser.Scene
 {
 	constructor()
     {
-        super({key:'400M'});
+        super({key:'800M'});
     }
 
 	preload()
@@ -16,18 +16,17 @@ class FourHundredM extends Phaser.Scene
         this.load.image('CelesteClassic_Spikes',                'CelesteClassic_Spikes.png');
 
         this.load.setPath('assets/sprites/');
-
         this.load.spritesheet('madeline','CelesteClassicCharacterSpritesheet.png', {frameWidth: 7, frameHeight: 7});
         this.load.spritesheet('flyingStrawberry','FlyingStrawberrySpritesheet.png', {frameWidth: 20, frameHeight: 9});
-        this.load.spritesheet('box','Box.png',{frameWidth: 8, frameHeight: 8});
+        this.load.spritesheet('cloudPlatform', 'CloudSpritesheet.png', {frameWidth: 16, frameHeight: 8});
         this.load.spritesheet('deadAnim','DEAD_CELESTE_Finished.png',{frameWidth: 32, frameHeight: 32})
         this.load.spritesheet('textBackground','textBackground.png', {frameWidth: 32, frameHeight: 8});
 
         this.load.setPath('assets/maps/');
 
         // --- Tilemap Json: ---
-        this.load.tilemapTiledJSON('400M_Level','400M_Level.json');
-        this.load.json('400M_Json','400M_Level.json');
+        this.load.tilemapTiledJSON('700M_Level','700M_Level.json');
+        this.load.json('700M_Json','700M_Level.json');
 
         // --- Audio: ---
         this.load.setPath('assets/sounds/');
@@ -42,7 +41,7 @@ class FourHundredM extends Phaser.Scene
     {
         this.dashedParticles = false;
 
-        this.map = this.add.tilemap('400M_Level');
+        this.map = this.add.tilemap('700M_Level');
 
         // --- Tilemap Tileset Images: ---
         this.map.addTilesetImage('CelesteClassic_Walls');
@@ -56,13 +55,14 @@ class FourHundredM extends Phaser.Scene
         this.cloudParticles.createEmitter({
 			frame: 'green',
 			x: -10,
-			y: { min: -2548, max: 2548 },
+			y: { min: -3000, max: 3000 },
 			lifespan: 20000,
 			speedX: { min: 200, max: 500 },
 			scale: 0.25,
 			quantity: 0.00001,
 			blendMode: 'ADD'
 		});
+        
 
         // --- Tilemap Layers: ---
         this.map.createLayer('Background',  'CelesteClassic_Background');
@@ -73,7 +73,8 @@ class FourHundredM extends Phaser.Scene
         // --- Tilemap Collisions: ---
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
         this.map.setCollisionByExclusion(-1, true, true, 'Spikes');
-        this.data = this.cache.json.get('400M_Json');
+
+        this.data = this.cache.json.get('700M_Json');
         
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
@@ -90,7 +91,7 @@ class FourHundredM extends Phaser.Scene
         this._9 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NINE);
         this._0 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ZERO);
 
-        this.hero = new heroPrefab(this, 48, 368);
+        this.hero = new heroPrefab(this, 80, 416);
         
         this.physics.add.collider
         (
@@ -107,10 +108,8 @@ class FourHundredM extends Phaser.Scene
             this
         );
 
-
         this.loadAnimations();
         this.loadObjects();
-
         this.loadSounds();
 
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
@@ -144,7 +143,7 @@ class FourHundredM extends Phaser.Scene
         this.gameTimer = new inGametimer(this, 80, 30, 'textBackground');
         this.animDead = new AnimDeadMadeline(this,0,0, 'deadAnim');
     }
-
+    
     hit()
     {
         this.die.play();
@@ -167,9 +166,43 @@ class FourHundredM extends Phaser.Scene
         this.physics.world.enable(this.hero);
         this.hero.body.allowGravity = true;
     }
+
+
+    loadAnimations()
+    {
+        this.anims.create
+        ({
+            key:'run',
+            frames:this.anims.generateFrameNumbers('madeline',{start:0,end:3}),
+            frameRate:10,
+            repeat:-1
+        });
+        this.anims.create
+        ({
+            key:'jump',
+            frames:this.anims.generateFrameNumbers('madeline',{start:5,end:8}),
+            frameRate:10,
+            repeat:-1
+        });
+        this.anims.create
+        ({
+            key:'flyStrawberry',
+            frames:this.anims.generateFrameNumbers('flyingStrawberry',{start:0,end:2}),
+            frameRate:5,
+            repeat:-1
+        })
+        this.anims.create({
+            key:'deadAnimK',
+            frames:this.anims.generateFrameNumbers('deadAnim',{start:0,end:10}),
+            frameRate:24,
+            repeat:0
+
+        });
+    }
+
     loadObjects()
     {
-        var layer = 3;
+        var layer = 1;
 
         for(var i = 0; i < this.data.layers[layer].objects.length; i++)
         {
@@ -211,45 +244,6 @@ class FourHundredM extends Phaser.Scene
                     break;
             }
         }
-    }
-
-    loadAnimations()
-    {
-        this.anims.create
-        ({
-            key:'run',
-            frames:this.anims.generateFrameNumbers('madeline',{start:0,end:3}),
-            frameRate:10,
-            repeat:-1
-        });
-        this.anims.create
-        ({
-            key:'jump',
-            frames:this.anims.generateFrameNumbers('madeline',{start:5,end:8}),
-            frameRate:10,
-            repeat:-1
-        });
-        this.anims.create
-        ({
-            key:'boxDestroy',
-            frames:this.anims.generateFrameNumbers('box',{start:0,end:3}),
-            frameRate:2,
-            repeat:0
-        })
-        this.anims.create
-        ({
-            key:'flyStrawberry',
-            frames:this.anims.generateFrameNumbers('flyingStrawberry',{start:0,end:2}),
-            frameRate:5,
-            repeat:-1
-        })
-        this.anims.create({
-            key:'deadAnimK',
-            frames:this.anims.generateFrameNumbers('deadAnim',{start:0,end:10}),
-            frameRate:24,
-            repeat:0
-
-        });
     }
 
     loadSounds()
@@ -327,7 +321,7 @@ class FourHundredM extends Phaser.Scene
 
         // --- CHANGE LEVEL: ---
         if (this.hero.y < 15)
-        this.scene.start('500M');
+        this.scene.start('900M');
 
         // --- VOID DEATH: ---
         if((this.hero.y > gamePrefs.GAME_HEIGHT - 15) )

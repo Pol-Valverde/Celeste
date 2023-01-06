@@ -78,6 +78,17 @@ class OneHundredM extends Phaser.Scene
         this._c = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
         this._s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
 
+        this._1 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
+        this._2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
+        this._3 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
+        this._4 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FOUR);
+        this._5 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FIVE);
+        this._6 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SIX);
+        this._7 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SEVEN);
+        this._8 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.EIGHT);
+        this._9 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NINE);
+        this._0 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ZERO);
+
         gamePrefs.MUTE = false;
         this.hero = new heroPrefab(this, 48, 368);
         
@@ -253,14 +264,29 @@ class OneHundredM extends Phaser.Scene
 		this.strawBerry = this.sound.add('strawBerry');
     }
 
+    forceLevelLoad()
+    {
+        if(this._1.isDown) { this.scene.start('100M'); }
+        if(this._2.isDown) { this.scene.start('200M'); }
+        if(this._3.isDown) { this.scene.start('300M'); }
+        if(this._4.isDown) { this.scene.start('400M'); }
+        if(this._5.isDown) { this.scene.start('500M'); }
+        if(this._6.isDown) { this.scene.start('600M'); }
+        if(this._7.isDown) { this.scene.start('700M'); }
+        if(this._8.isDown) { this.scene.start('800M'); }
+        if(this._9.isDown) { this.scene.start('900M'); }
+        if(this._0.isDown) { this.scene.start('1000M'); }
+    }
+
 	update(time, delta)
     {
+        this.forceLevelLoad();
+
         totalTime += delta;
         if(this._s.isDown)
         {
                 gamePrefs.MUTE = !gamePrefs.MUTE;
                 this.game.sound.mute = !gamePrefs.MUTE;
-
         }
         // --- JUMP: ---
         if (this._c.isDown && this.hero.isCUp)
