@@ -27,7 +27,7 @@ class keyPrefab extends Phaser.GameObjects.Sprite
         {
             this.beeingDestroyed = true;
             this.scene.physics.world.disable(this);
-            this.anims.stop().setFrame(3);
+            this.visible = false;
             //cridar bool per obrir cofre
             this.scene.keyCatched = true;
         }
