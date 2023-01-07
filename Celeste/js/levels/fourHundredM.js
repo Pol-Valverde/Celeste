@@ -36,6 +36,9 @@ class FourHundredM extends Phaser.Scene
         this.load.audio('jump','jump.wav');
         this.load.audio('menuStart','menuStart.wav');
         this.load.audio('strawBerry','strawBerry.wav');
+        this.load.audio('wallJumpSound','wallJump.wav');
+        this.load.audio('flySound','flySound.wav');
+        this.load.audio('blockBroken','blockBroken.wav');
     }
 
 	create()
@@ -259,6 +262,9 @@ class FourHundredM extends Phaser.Scene
 		this.jump = this.sound.add('jump');
 		this.menuStart = this.sound.add('menuStart');
 		this.strawBerry = this.sound.add('strawBerry');
+        this.wallJumpSound = this.sound.add('wallJumpSound');
+        this.flySound = this.sound.add('flySound');
+        this.blockBroken = this.sound.add('blockBroken');
     }
 
     forceLevelLoad()

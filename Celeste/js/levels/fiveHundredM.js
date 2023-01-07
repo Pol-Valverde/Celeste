@@ -37,6 +37,10 @@ class FiveHundredM extends Phaser.Scene
         this.load.audio('jump','jump.wav');
         this.load.audio('menuStart','menuStart.wav');
         this.load.audio('strawBerry','strawBerry.wav');
+        this.load.audio('wallJumpSound','wallJump.wav');
+        this.load.audio('key','key.wav');
+        this.load.audio('chestShake','chestShake.wav');
+        this.load.audio('chestOpen','chestOpen.wav');
     }
 
 	create()
@@ -228,7 +232,12 @@ class FiveHundredM extends Phaser.Scene
 		this.jump = this.sound.add('jump');
 		this.menuStart = this.sound.add('menuStart');
 		this.strawBerry = this.sound.add('strawBerry');
+        this.wallJumpSound = this.sound.add('wallJumpSound');
+        this.key = this.sound.add('key','key.wav');
+        this.chestShake = this.sound.add('chestShake','chestShake.wav');
+        this.chestOpen = this.sound.add('chestOpen','chestOpen.wav');
     }
+    
     loadObjects()
     {
         var layer = 3;

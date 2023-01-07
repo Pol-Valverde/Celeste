@@ -20,6 +20,7 @@ class menu extends Phaser.Scene{
 		this.load.setPath('assets/sounds/');
         this.load.audio('menuStart','menuStart.wav');
 		this.load.audio('menuMusic', 'menuMusic.wav');
+		this.load.audio('levelMusic','stageMusic.wav');
     }
 	
 	create()
@@ -120,6 +121,7 @@ class menu extends Phaser.Scene{
 
 		this.menuStart = this.sound.add('menuStart');
 		this.menuMusic = this.sound.add('menuMusic');
+		this.levelMusic = this.sound.add('levelMusic');
 
 		var musicConfig = 
 		{
@@ -138,6 +140,19 @@ class menu extends Phaser.Scene{
 	iniciaJuego()
 	{
 		this.menuMusic.stop();
+
+		var musicConfig2 = 
+		{
+			mute: false,
+			volume: 1,
+			rate: 1,
+			detune: 0,
+			seek: 0,
+			loop: true,
+			delay: 0
+		}
+
+		this.levelMusic.play(musicConfig2);
 
 		this.cambiaEscena();
 

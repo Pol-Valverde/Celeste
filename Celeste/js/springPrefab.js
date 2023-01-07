@@ -25,6 +25,8 @@ class springPrefab extends Phaser.GameObjects.Sprite
 
     makePlayerJump(_hero)
     {
+        this.scene.spring.play();
+
         this.scene.hero.body.setVelocityY(-475)
 
         this.anims.play('springBounce', true);

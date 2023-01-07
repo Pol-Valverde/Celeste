@@ -32,6 +32,8 @@ class strawberryPrefab extends Phaser.GameObjects.Sprite
 
         this.body.setVelocityY(-this.vel)
         this.scene.time.delayedCall(220, this.updateAnim, [], this);
+
+        this.strawBerry = this.scene.sound.add('strawBerry');
     }
 
     updateAnim()
@@ -48,7 +50,6 @@ class strawberryPrefab extends Phaser.GameObjects.Sprite
                 this.body.setVelocityY(-this.vel)
                 this.animDirection = 1
             }
-
         
             this.scene.time.delayedCall(this.timeToStop, this.stopAnim, [], this);
         }
@@ -60,18 +61,22 @@ class strawberryPrefab extends Phaser.GameObjects.Sprite
         {
             this.body.setVelocityY(0)
         
-        
             this.scene.time.delayedCall(220, this.updateAnim, [], this);
         }
     }
 
     pickedUp()
     {
-        this.body.setVelocityY(-50)
-        this.pickedUpBerry = true
+        if (!this.pickedUpBerry)
+        {
+            this.body.setVelocityY(-50)
+            this.pickedUpBerry = true
         
-        this.anims.play('textFloat', false)
-        this.scene.time.delayedCall(1000, this.stopCompletly, [], this);
+            this.anims.play('textFloat', false)
+            this.scene.time.delayedCall(1000, this.stopCompletly, [], this);
+
+            this.strawBerry.play();
+        }
     }
 
     stopCompletly()

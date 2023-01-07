@@ -35,6 +35,8 @@ class breakingGroundPrefab extends Phaser.GameObjects.Sprite
 
     breakBlock()
     {
+        this.scene.blockBroken.play();
+
         this.scene.physics.world.disable(this);
         this.scene.time.delayedCall(gamePrefs.BREAKINGGROUND_BREAK_TIME, this.recoverBlock, [], this);
     }

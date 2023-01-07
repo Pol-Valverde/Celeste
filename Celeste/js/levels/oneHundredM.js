@@ -37,7 +37,8 @@ class OneHundredM extends Phaser.Scene
         this.load.audio('jump','jump.wav');
         this.load.audio('menuStart','menuStart.wav');
         this.load.audio('strawBerry','strawBerry.wav');
-        this.load.audio('levelMusic','stageMusic.wav');
+        this.load.audio('wallBroken','wallBroken.wav');
+        this.load.audio('wallJumpSound','wallJump.wav');
     }
 
 	create()
@@ -72,7 +73,7 @@ class OneHundredM extends Phaser.Scene
 
         // --- Tilemap Collisions: ---
         this.map.setCollisionByExclusion(-1, true, true, 'Walls_Ground_&_Ceiling');
-        this.map.setCollisionByExclusion(-1,true, true, 'Spikes')
+        this.map.setCollisionByExclusion(-1,true, true, 'Spikes');
         this.data = this.cache.json.get('100M_Json');
         
         this._x = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
@@ -111,24 +112,11 @@ class OneHundredM extends Phaser.Scene
         this.loadAnimations();
         this.loadObjects();
         this.loadSounds();
-
-        var musicConfig = 
-		{
-			mute: false,
-			volume: 1,
-			rate: 1,
-			detune: 0,
-			seek: 0,
-			loop: true,
-			delay: 0
-		}
-
-		this.levelMusic.play(musicConfig);
   
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
         
         this.dashParticles = this.add.particles('celesteFlares').setScale(1);
-        
+        this.particlesBlock = this.add.particles('flares').setScale(1);
         this.particles = this.add.particles('flares').setScale(1);
 
         this.particles.createEmitter({
@@ -275,8 +263,9 @@ class OneHundredM extends Phaser.Scene
 		this.die = this.sound.add('die');
 		this.jump = this.sound.add('jump');
 		this.menuStart = this.sound.add('menuStart');
-		this.strawBerry = this.sound.add('strawBerry');
 		this.levelMusic = this.sound.add('levelMusic');
+		this.wallJumpSound = this.sound.add('wallJumpSound');
+        this.wallBroken = this.sound.add('wallBroken');
     }
 
     forceLevelLoad()
@@ -315,7 +304,7 @@ class OneHundredM extends Phaser.Scene
             }
             else if((this.hero.wallSliding || this.hero.canWallJump) && !this.hero.wallJumping)
             {
-                this.hero.WallJump()
+                this.hero.WallJump();
                 this.timedEvent = this.time.delayedCall(gamePrefs.HERO_WALLJUMP_TIME, this.hero.StopWallJump, [this], this.hero);
             }
         }

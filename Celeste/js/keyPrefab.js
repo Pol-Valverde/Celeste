@@ -30,6 +30,8 @@ class keyPrefab extends Phaser.GameObjects.Sprite
             this.visible = false;
             //cridar bool per obrir cofre
             this.scene.keyCatched = true;
+
+            this.scene.key.play();
         }
     }
 

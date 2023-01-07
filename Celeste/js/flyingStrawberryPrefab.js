@@ -69,11 +69,16 @@ class flyingStrawberryPrefab extends Phaser.GameObjects.Sprite
 
     pickedUp()
     {
-        this.body.setVelocityY(-50)
-        this.pickedUpBerry = true
-        
-        this.anims.play('textFloat', false)
-        this.scene.time.delayedCall(1000, this.stopCompletly, [], this);
+        if(!this.pickedUpBerry)
+        {
+            this.body.setVelocityY(-50)
+            this.pickedUpBerry = true
+            
+            this.anims.play('textFloat', false)
+            this.scene.time.delayedCall(1000, this.stopCompletly, [], this);
+
+            this.scene.strawBerry.play();
+        }
     }
 
     stopCompletly()
@@ -84,7 +89,12 @@ class flyingStrawberryPrefab extends Phaser.GameObjects.Sprite
 
     flyAway()
     {
-        this.pickedUpBerry = true
-        this.body.setVelocityY(-225)
+        if(!this.pickedUpBerry)
+        {
+            this.pickedUpBerry = true
+            this.body.setVelocityY(-225)
+
+            this.scene.flySound.play();
+        }
     }
 }

@@ -37,6 +37,10 @@ class NineHundredM extends Phaser.Scene
         this.load.audio('jump','jump.wav');
         this.load.audio('menuStart','menuStart.wav');
         this.load.audio('strawBerry','strawBerry.wav');
+        this.load.audio('spring','springSound.wav');
+        this.load.audio('wallBroken','wallBroken.wav');
+        this.load.audio('wallJumpSound','wallJump.wav');
+        this.load.audio('balloon','balloon.wav');
     }
 
 	create()
@@ -116,6 +120,7 @@ class NineHundredM extends Phaser.Scene
 
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
         this.dashParticles = this.add.particles('flares').setScale(1);
+        this.particlesBlock = this.add.particles('flares').setScale(1);
         this.particles = this.add.particles('flares').setScale(1);
 
         this.particles.createEmitter({
@@ -268,6 +273,10 @@ class NineHundredM extends Phaser.Scene
 		this.jump = this.sound.add('jump');
 		this.menuStart = this.sound.add('menuStart');
 		this.strawBerry = this.sound.add('strawBerry');
+        this.spring = this.sound.add('spring');
+        this.wallBroken = this.sound.add('wallBroken');
+        this.wallJumpSound = this.sound.add('wallJumpSound');
+        this.balloon = this.sound.add('balloon');
     }
 
     forceLevelLoad()

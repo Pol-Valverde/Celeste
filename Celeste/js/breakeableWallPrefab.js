@@ -22,21 +22,31 @@ class breakeableWallPrefab extends Phaser.GameObjects.Sprite
 
     startDestroy()
     {
+
         if(this.scene.hero.dashing)
         {
+            this.scene.wallBroken.play();
+
             //particles
-            this.scene.dashParticles.createEmitter({
+            this.visible = false
+            this.scene.particlesBlock.createEmitter({
                 frame: 'yellow',
-                x: { min: (this.x - this.partOffset), max: (this.x + this.partOffset) },
-                y: { min: (this.y - 500), max: (this.y + 500) },
-                lifespan: 750,
-                speedX: {start:this.speedXParticles * -50, end:0},
-                speedY: this.speedYParticles * -100,
+                x:  this.x  ,
+                y: { min: (this.y - 20), max: (this.y + 20) },
+                lifespan: 900,
+                speedX: {start: 300, end:0},
+                speedY:  0,
                 scale: { start:0.05, end: 0 },
                 quantity: 0.0000001,
                 blendMode: 'ADD'
             });
-            this.destroy()
+            this.scene.time.delayedCall(300,this.destroyWall,[],this);
         }
+
+    }
+    destroyWall()
+    {
+        this.scene.particlesBlock.destroy();
+        this.destroy();
     }
 }

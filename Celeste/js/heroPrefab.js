@@ -114,7 +114,7 @@ class heroPrefab extends Phaser.GameObjects.Sprite
 
     WallJump(_scene)
     {
-        this.scene.jump.play();
+        this.scene.wallJumpSound.play();
 
         this.wallJumping = true;
         this.body.allowGravity = false;

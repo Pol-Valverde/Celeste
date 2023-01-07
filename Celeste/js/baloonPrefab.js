@@ -32,6 +32,8 @@ class baloonPrefab extends Phaser.GameObjects.Sprite
             this.scene.time.delayedCall(gamePrefs.BALOON_RECOVER_TIME, this.recoverBaloon, [], this);
             this.scene.hero.canDash = true;
             this.scene.hero.dashedAnim = false;
+
+            this.scene.balloon.play();
         }
     }
 

@@ -34,27 +34,33 @@ class chestPrefab extends Phaser.GameObjects.Sprite
                 this.startAnim = true;
                 this.MoveRight();
                 this.scene.time.delayedCall(2000, this.DestroyChest, [], this);
+
+                this.scene.chestShake.play();
             }
             
         }
     }
+
     MoveRight()
     {
         this.body.setVelocityX(50);
-       this.scene.time.delayedCall(50, this.MoveLeft,[], this);
+        this.scene.time.delayedCall(50, this.MoveLeft,[], this);
     }
+
     MoveLeft()
     {
         this.body.setVelocityX(-50);
         this.scene.time.delayedCall(50, this.MoveRight, [], this);
     }
+
     DestroyChest()
     {
-        
         this.strawberryPrefab = new strawberryPrefab(this.scene, this.startPosX, this.startPosY - 20, 'strawberry');
 
         this.scene.physics.world.disable(this); 
         this.anims.stop().setFrame(1);
+
+        this.scene.chestOpen.play();
     }
     
 
