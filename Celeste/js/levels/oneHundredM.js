@@ -37,6 +37,7 @@ class OneHundredM extends Phaser.Scene
         this.load.audio('jump','jump.wav');
         this.load.audio('menuStart','menuStart.wav');
         this.load.audio('strawBerry','strawBerry.wav');
+        this.load.audio('levelMusic','stageMusic.wav');
     }
 
 	create()
@@ -110,6 +111,19 @@ class OneHundredM extends Phaser.Scene
         this.loadAnimations();
         this.loadObjects();
         this.loadSounds();
+
+        var musicConfig = 
+		{
+			mute: false,
+			volume: 1,
+			rate: 1,
+			detune: 0,
+			seek: 0,
+			loop: true,
+			delay: 0
+		}
+
+		this.levelMusic.play(musicConfig);
   
         this.cameras.main.setBounds(0,0,gamePrefs.GAME_WIDTH,gamePrefs.GAME_HEIGHT);
         
@@ -262,6 +276,7 @@ class OneHundredM extends Phaser.Scene
 		this.jump = this.sound.add('jump');
 		this.menuStart = this.sound.add('menuStart');
 		this.strawBerry = this.sound.add('strawBerry');
+		this.levelMusic = this.sound.add('levelMusic');
     }
 
     forceLevelLoad()
